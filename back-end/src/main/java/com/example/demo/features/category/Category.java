@@ -19,5 +19,5 @@ public class Category {
     private UUID id;
 
     private String name;
-    private String image;
+    private String imageLink;
 }
