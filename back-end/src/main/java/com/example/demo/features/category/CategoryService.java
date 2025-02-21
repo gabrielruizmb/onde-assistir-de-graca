@@ -12,6 +12,11 @@ public class CategoryService {
     }
 
     public void create(Category category) {
+        if (categoryRepository.existsByName(category.getName())) {
+            throw new IllegalArgumentException(
+                "Este nome de categoria já está sendo usado!"
+            );
+        }
         this.categoryRepository.save(category);
     }
 }

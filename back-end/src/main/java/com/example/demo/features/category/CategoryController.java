@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-@RequestMapping("/api/category")
+@RequestMapping("/api/categories")
 public class CategoryController {
     
     private final CategoryService categoryService;
@@ -24,7 +24,9 @@ public class CategoryController {
             this.categoryService.create(category);
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
         } catch(Exception exception) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(
+                exception.getMessage()
+            );
         }
     }
 }
