@@ -29,6 +29,6 @@ public class Category {
     private String imageLink;
 
     public CategoryDTO convertToDTO() {
-        return new CategoryDTO(id, name, imageLink);
+        return new CategoryDTO(this.id, this.name, this.imageLink);
     }
 }

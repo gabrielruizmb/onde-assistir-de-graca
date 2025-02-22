@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 @Service
 public class CategoryService {
@@ -19,7 +20,11 @@ public class CategoryService {
         this.categoryRepository.save(categoryDTO.convertToEntity());
     }
 
-    public void update(CategoryDTO categoryDTO) {         
+    public void update(CategoryDTO categoryDTO, UUID id) {
+
+        Assert.isTrue(categoryRepository.existsById(id), 
+        "Registro não encontrado");
+
         this.categoryRepository.save(categoryDTO.convertToEntity());
     }
 
@@ -38,4 +43,11 @@ public class CategoryService {
 
         return categoriesDTOs;
     }
+
+    // public void delete(UUID id) {
+    //     Assert.isTrue(categoryRepository.existsById(id), 
+    //     "Registro não encontrado");
+
+    //     categoryRepository.deleteById(id);
+    // }
 }

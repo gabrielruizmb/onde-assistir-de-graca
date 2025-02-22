@@ -7,6 +7,7 @@ import java.util.Optional;
 
 
 public interface CategoryRepository extends JpaRepository<Category, UUID>{
+    public boolean existsById(UUID id);
     public boolean existsByName(String name);
     public Optional<Category> findByName(String name);
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -34,16 +35,16 @@ public class CategoryController {
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
         } catch(Exception exception) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(
-                exception.getMessage()
+                "Este nome de categoria já existe"
             );
         }
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<String> update(@PathVariable UUID id, 
-            @RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<String> update(@RequestBody @Validated 
+    CategoryDTO categoryDTO, @PathVariable UUID id) {
         try {
-            this.categoryService.update(categoryDTO);
+            this.categoryService.update(categoryDTO, id);
             return ResponseEntity.status(HttpStatus.OK).body(null);
         } catch(Exception exception) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(
@@ -69,4 +70,12 @@ public class CategoryController {
             categoryService.getAll()
         );
     }
+
+    // @DeleteMapping
+    // public ResponseEntity<String> delete(@PathVariable UUID id) {
+    //     try {
+    //         this.categoryService.delete(id);
+    //         return ResponseEntity.status(HttpStatus)
+    //     }
+    // }
 }
