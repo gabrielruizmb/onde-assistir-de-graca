@@ -1,11 +1,19 @@
 package com.example.demo.features.category;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @Controller
@@ -19,14 +27,46 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody Category category) {
+    public ResponseEntity<String> create(@RequestBody @Validated 
+            CategoryDTO categoryDTO) {
         try {
-            this.categoryService.create(category);
+            this.categoryService.create(categoryDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
         } catch(Exception exception) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(
                 exception.getMessage()
             );
         }
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<String> update(@PathVariable UUID id, 
+            @RequestBody CategoryDTO categoryDTO) {
+        try {
+            this.categoryService.update(categoryDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        } catch(Exception exception) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(
+                exception.getMessage()
+            );
+        }
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<CategoryDTO> getById(@PathVariable UUID id) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(
+                this.categoryService.getById(id)
+            );
+        } catch(Exception exception) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoryDTO>> getAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(
+            categoryService.getAll()
+        );
     }
 }
