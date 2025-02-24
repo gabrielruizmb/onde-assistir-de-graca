@@ -16,9 +16,9 @@ public record CategoryDTO(
     )
     String name,
 
-    String imageLink
+    String imageUrl
 ) {
     public Category convertToEntity() {
-        return new Category(this.id, this.name, this.imageLink);
+        return new Category(this.id, this.name, this.imageUrl);
     }
 }
