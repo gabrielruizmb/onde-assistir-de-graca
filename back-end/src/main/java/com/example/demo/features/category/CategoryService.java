@@ -21,10 +21,6 @@ public class CategoryService {
     }
 
     public void update(CategoryDTO categoryDTO, UUID id) {
-
-        Assert.isTrue(categoryRepository.existsById(id), 
-        "Registro não encontrado");
-
         this.categoryRepository.save(categoryDTO.convertToEntity());
     }
 
@@ -44,10 +40,10 @@ public class CategoryService {
         return categoriesDTOs;
     }
 
-    // public void delete(UUID id) {
-    //     Assert.isTrue(categoryRepository.existsById(id), 
-    //     "Registro não encontrado");
+    public void delete(UUID id) {
+        Assert.isTrue(categoryRepository.existsById(id), 
+        "Registro não encontrado");
 
-    //     categoryRepository.deleteById(id);
-    // }
+        categoryRepository.deleteById(id);
+    }
 }

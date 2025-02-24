@@ -45,10 +45,10 @@ public class CategoryController {
     CategoryDTO categoryDTO, @PathVariable UUID id) {
         try {
             this.categoryService.update(categoryDTO, id);
-            return ResponseEntity.status(HttpStatus.OK).body(null);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         } catch(Exception exception) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(
-                exception.getMessage()
+                "Este nome de categoria já existe"
             );
         }
     }
@@ -60,7 +60,7 @@ public class CategoryController {
                 this.categoryService.getById(id)
             );
         } catch(Exception exception) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
@@ -71,11 +71,13 @@ public class CategoryController {
         );
     }
 
-    // @DeleteMapping
-    // public ResponseEntity<String> delete(@PathVariable UUID id) {
-    //     try {
-    //         this.categoryService.delete(id);
-    //         return ResponseEntity.status(HttpStatus)
-    //     }
-    // }
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> delete(@PathVariable UUID id) {
+        try {
+            this.categoryService.delete(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        } catch (Exception exception) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 }
