@@ -62,11 +62,6 @@ public class CategoryController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<ResponseDTO> delete(@PathVariable UUID id) {
-        try {
-            this.categoryService.delete(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-        } catch (Exception exception) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+        return categoryService.delete(id);
     }
 }

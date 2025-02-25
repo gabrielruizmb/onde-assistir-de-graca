@@ -7,7 +7,6 @@ import java.util.UUID;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import com.example.demo.features.ResponseDTO;
 
@@ -84,10 +83,13 @@ public class CategoryService {
         return categoriesDTOs;
     }
 
-    public void delete(UUID id) {
-        Assert.isTrue(categoryRepository.existsById(id), 
-        "Registro não encontrado");
+    public ResponseEntity<ResponseDTO> delete(UUID id) {
+
+        if (!categoryRepository.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
 
         categoryRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 }
