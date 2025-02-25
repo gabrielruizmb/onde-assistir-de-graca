@@ -44,13 +44,7 @@ public class CategoryController {
 
     @GetMapping("{id}")
     public ResponseEntity<CategoryDTO> getById(@PathVariable UUID id) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(
-                this.categoryService.getById(id)
-            );
-        } catch(Exception exception) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+        return categoryService.getById(id);
     }
 
     @GetMapping
