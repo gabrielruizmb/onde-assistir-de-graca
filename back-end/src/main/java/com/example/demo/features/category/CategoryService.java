@@ -67,9 +67,13 @@ public class CategoryService {
         }
     }
 
-    public CategoryDTO getById(UUID id) {
-        CategoryDTO categoryDTO = categoryRepository.findById(id).get().convertToDTO();
-        return categoryDTO;
+    public ResponseEntity<CategoryDTO> getById(UUID id) {
+        try {
+            CategoryDTO categoryDTO = categoryRepository.findById(id).get().convertToDTO();
+            return ResponseEntity.status(HttpStatus.OK).body(categoryDTO);
+        } catch (Exception exception) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     public List<CategoryDTO> getAll() {
