@@ -26,9 +26,9 @@ public class Category {
     @Column(unique = true, nullable = false, length = 30)
     private String name;
 
-    private String imageLink;
+    private String imageUrl;
 
     public CategoryDTO convertToDTO() {
-        return new CategoryDTO(this.id, this.name, this.imageLink);
+        return new CategoryDTO(this.id, this.name, this.imageUrl);
     }
 }
