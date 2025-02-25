@@ -42,32 +42,6 @@ public class CategoryController {
         return this.categoryService.update(categoryDTO, id);
     }
 
-    // @PostMapping
-    // public ResponseEntity<String> create(@RequestBody @Validated 
-    //         CategoryDTO categoryDTO) {
-    //     try {
-    //         this.categoryService.create(categoryDTO);
-    //         return ResponseEntity.status(HttpStatus.CREATED).body(null);
-    //     } catch(Exception exception) {
-    //         return ResponseEntity.status(HttpStatus.CONFLICT).body(
-    //             "Este nome de categoria já existe"
-    //         );
-    //     }
-    // }
-
-    // @PutMapping("{id}")
-    // public ResponseEntity<String> update(@RequestBody @Validated 
-    // CategoryDTO categoryDTO, @PathVariable UUID id) {
-    //     try {
-    //         this.categoryService.update(categoryDTO, id);
-    //         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-    //     } catch(Exception exception) {
-    //         return ResponseEntity.status(HttpStatus.CONFLICT).body(
-    //             "Este nome de categoria já existe"
-    //         );
-    //     }
-    // }
-
     @GetMapping("{id}")
     public ResponseEntity<CategoryDTO> getById(@PathVariable UUID id) {
         try {
@@ -87,7 +61,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> delete(@PathVariable UUID id) {
+    public ResponseEntity<ResponseDTO> delete(@PathVariable UUID id) {
         try {
             this.categoryService.delete(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);

@@ -41,10 +41,6 @@ public class CategoryService {
         }
     }
 
-    // public void create(CategoryDTO categoryDTO) {
-    //     this.categoryRepository.save(categoryDTO.convertToEntity());
-    // }
-
     public ResponseEntity<ResponseDTO> update(CategoryDTO categoryDTO, UUID id) {
 
         if (!categoryRepository.existsById(id)) {
@@ -71,10 +67,6 @@ public class CategoryService {
             );
         }
     }
-
-    // public void update(CategoryDTO categoryDTO, UUID id) {
-    //     this.categoryRepository.save(categoryDTO.convertToEntity());
-    // }
 
     public CategoryDTO getById(UUID id) {
         CategoryDTO categoryDTO = categoryRepository.findById(id).get().convertToDTO();
