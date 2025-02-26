@@ -1,6 +1,7 @@
 package com.example.demo.features.genre;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,23 +20,30 @@ public class GenreService {
         this.genreRepository = genreRepository;
     }
 
-    public ResponseEntity<ResponseDTO> create(GenreDTO genreDTO) {
+    public ResponseEntity<?> create(GenreDTO genreDTO) {
 
         if (genreDTO.name().isBlank() || genreDTO.name().length() > 30) {
+
+            HashMap<String, String> response = new HashMap<String, String>();
+
+            response.put("name", "O nome deve conter entre 1 e 30 caracteres");
+
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                new ResponseDTO(
-                    "O nome do gênero deve ter entre 1 e 30 caracteres."
-                )
+                response
             );
         }
 
         try {
+            
             genreRepository.save(genreDTO.convertToEntity());
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
+
         } catch (Exception exception) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(
-                new ResponseDTO("Já existe um gênero com este nome")
-            );
+
+            HashMap<String, String> response = new HashMap<String, String>();
+            response.put("name", "Já existe um gênero com este nome");
+
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
     }
 
