@@ -26,12 +26,12 @@ public class GenreController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDTO> create(@RequestBody GenreDTO genreDTO) {
+    public ResponseEntity<?> create(@RequestBody GenreDTO genreDTO) {
         return genreService.create(genreDTO);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ResponseDTO> update(@RequestBody GenreDTO genreDTO,
+    public ResponseEntity<?> update(@RequestBody GenreDTO genreDTO,
                                               @PathVariable UUID id) {
         return genreService.update(genreDTO, id);
     }
