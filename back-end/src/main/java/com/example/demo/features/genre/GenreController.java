@@ -1,5 +1,6 @@
 package com.example.demo.features.genre;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.features.ResponseDTO;
-
 @RestController
 @RequestMapping("/api/genres")
 public class GenreController {
@@ -26,13 +25,15 @@ public class GenreController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody GenreDTO genreDTO) {
+    public ResponseEntity<HashMap<String, String>> create(@RequestBody 
+                                                          GenreDTO genreDTO) {
         return genreService.create(genreDTO);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> update(@RequestBody GenreDTO genreDTO,
-                                              @PathVariable UUID id) {
+    public ResponseEntity<HashMap<String, String>> update(
+        @RequestBody GenreDTO genreDTO,
+        @PathVariable UUID id) {
         return genreService.update(genreDTO, id);
     }
 
@@ -47,7 +48,7 @@ public class GenreController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<ResponseDTO> deleteById(@PathVariable UUID id) {
+    public ResponseEntity<GenreDTO> deleteById(@PathVariable UUID id) {
         return genreService.deleteById(id);
     }
 }

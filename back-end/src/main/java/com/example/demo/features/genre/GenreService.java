@@ -9,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.features.ResponseDTO;
-
 @Service
 public class GenreService {
 
@@ -20,7 +18,7 @@ public class GenreService {
         this.genreRepository = genreRepository;
     }
 
-    public ResponseEntity<?> create(GenreDTO genreDTO) {
+    public ResponseEntity<HashMap<String, String>> create(GenreDTO genreDTO) {
 
         if (genreDTO.name().isBlank() || genreDTO.name().length() > 30) {
 
@@ -33,7 +31,6 @@ public class GenreService {
         }
 
         try {
-
             genreRepository.save(genreDTO.convertToEntity());
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
 
@@ -46,7 +43,8 @@ public class GenreService {
         }
     }
 
-    public ResponseEntity<?> update(GenreDTO genreDTO, UUID id) {
+    public ResponseEntity<HashMap<String, String>> update(GenreDTO genreDTO, 
+                                                          UUID id) {
 
         if (!genreRepository.existsById(id)) {
 
@@ -95,7 +93,7 @@ public class GenreService {
         }
     }
 
-    public ResponseEntity<ResponseDTO> deleteById(UUID id) {
+    public ResponseEntity<GenreDTO> deleteById(UUID id) {
         
         if (!genreRepository.existsById(id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
