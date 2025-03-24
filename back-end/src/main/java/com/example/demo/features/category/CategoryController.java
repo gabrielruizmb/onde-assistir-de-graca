@@ -10,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.features.ResponseDTO;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,7 +36,7 @@ public class CategoryController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ResponseDTO> update(
+    public ResponseEntity<HashMap<String, String>> update(
         @RequestBody CategoryDTO categoryDTO,
         @PathVariable UUID id) {
         return this.categoryService.update(categoryDTO, id);
@@ -57,7 +55,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<ResponseDTO> delete(@PathVariable UUID id) {
+    public ResponseEntity<CategoryDTO> delete(@PathVariable UUID id) {
         return categoryService.delete(id);
     }
 }
