@@ -24,7 +24,7 @@ public class Genre {
 
     @Column(unique = true, nullable = false, length = 30)
     private String name;
-
+    
     private String imageUrl;
 
     public GenreDTO convertToDTO() {

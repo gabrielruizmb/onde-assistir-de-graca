@@ -1,5 +1,6 @@
 package com.example.demo.features.category;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,8 +31,9 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDTO> create(@RequestBody 
-                                              CategoryDTO categoryDTO) {
+    public ResponseEntity<HashMap<String, String>> create(
+        @RequestBody CategoryDTO categoryDTO) {
+            
         return this.categoryService.create(categoryDTO);
     }
 

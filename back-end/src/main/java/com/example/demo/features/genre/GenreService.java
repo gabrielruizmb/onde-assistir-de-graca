@@ -23,7 +23,7 @@ public class GenreService {
         if (genreDTO.name().isBlank() || genreDTO.name().length() > 30) {
 
             HashMap<String, String> response = new HashMap<String, String>();
-            response.put("name", "O nome deve conter entre 1 e 30 caracteres");
+            response.put("nome", "O nome deve conter entre 1 e 30 caracteres");
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 response

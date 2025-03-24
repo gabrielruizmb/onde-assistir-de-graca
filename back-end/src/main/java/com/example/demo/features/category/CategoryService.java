@@ -1,6 +1,7 @@
 package com.example.demo.features.category;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,24 +20,29 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public ResponseEntity<ResponseDTO> create(CategoryDTO categoryDTO) {
+    public ResponseEntity<HashMap<String, String>> create(CategoryDTO 
+                                                          categoryDTO) {
 
         if (categoryDTO.name().isBlank() || categoryDTO.name().length() > 30) {
 
+            HashMap<String, String> response = new HashMap<>();
+            response.put("nome", "O nome deve conter entre 1 e 30 caracteres");
+
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                new ResponseDTO(
-                "O nome da categoria deve conter entre 1 e 30 caracteres"
-                )
+                response
             );
         }
 
         try {
+
             categoryRepository.save(categoryDTO.convertToEntity());
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        
         } catch (Exception exception) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(
-                new ResponseDTO("Já existe uma categoria com este nome")
-            );
+
+            HashMap<String, String> response = new HashMap<>();
+            response.put("nome", "Já existe uma categoria com este nome");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
     }
 
