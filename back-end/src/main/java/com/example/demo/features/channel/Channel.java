@@ -29,4 +29,8 @@ public class Channel {
     private String name;
     
     private String imageUrl;
+
+    public ChannelDTO convertToDTO() {
+        return new ChannelDTO(id, url, name, imageUrl);
+    }
 }
