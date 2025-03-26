@@ -1,5 +1,6 @@
 package com.example.demo.features.category;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.example.demo.features.ResponseDTO;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,13 +29,14 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDTO> create(@RequestBody 
-                                              CategoryDTO categoryDTO) {
+    public ResponseEntity<HashMap<String, String>> create(
+        @RequestBody CategoryDTO categoryDTO) {
+            
         return this.categoryService.create(categoryDTO);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ResponseDTO> update(
+    public ResponseEntity<HashMap<String, String>> update(
         @RequestBody CategoryDTO categoryDTO,
         @PathVariable UUID id) {
         return this.categoryService.update(categoryDTO, id);
@@ -55,7 +55,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<ResponseDTO> delete(@PathVariable UUID id) {
+    public ResponseEntity<CategoryDTO> delete(@PathVariable UUID id) {
         return categoryService.delete(id);
     }
 }

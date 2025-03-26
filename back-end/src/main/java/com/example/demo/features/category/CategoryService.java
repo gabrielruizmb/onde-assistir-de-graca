@@ -1,14 +1,13 @@
 package com.example.demo.features.category;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import com.example.demo.features.ResponseDTO;
 
 @Service
 public class CategoryService {
@@ -19,41 +18,58 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public ResponseEntity<ResponseDTO> create(CategoryDTO categoryDTO) {
+    public ResponseEntity<HashMap<String, String>> create(CategoryDTO 
+                                                          categoryDTO) {
 
         if (categoryDTO.name().isBlank() || categoryDTO.name().length() > 30) {
 
+            HashMap<String, String> response = new HashMap<>();
+
+            if (categoryDTO.name().isBlank())
+                response.put("nome", "O nome não pode ficar em branco");
+
+            if (categoryDTO.name().length() > 30)
+                response.put("nome", "O nome pode ter no máx. 30 caracteres");
+
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                new ResponseDTO(
-                "O nome da categoria deve conter entre 1 e 30 caracteres"
-                )
+                response
             );
         }
 
         try {
+
             categoryRepository.save(categoryDTO.convertToEntity());
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        
         } catch (Exception exception) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(
-                new ResponseDTO("Já existe uma categoria com este nome")
-            );
+
+            HashMap<String, String> response = new HashMap<>();
+            response.put("nome", "Já existe uma categoria com este nome");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
     }
 
-    public ResponseEntity<ResponseDTO> update(CategoryDTO categoryDTO, UUID id) {
+    public ResponseEntity<HashMap<String, String>> update(
+        CategoryDTO categoryDTO, UUID id) {
 
         if (!categoryRepository.existsById(id)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                new ResponseDTO("Categoria não encontrada")
-            );
+            HashMap<String, String> response = new HashMap<>();
+            response.put("id", "Não existe uma categoria com este id");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
 
         if (categoryDTO.name().isBlank() || categoryDTO.name().length() > 30) {
 
+            HashMap<String, String> response = new HashMap<>();
+
+            if (categoryDTO.name().isBlank())
+                response.put("nome", "O nome não pode ficar em branco");
+
+            if (categoryDTO.name().length() > 30)
+                response.put("nome", "O nome pode ter no máx. 30 caracteres");
+
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                new ResponseDTO(
-                "O nome da categoria deve conter entre 1 e 30 caracteres"
-                )
+                response
             );
         }
 
@@ -61,16 +77,17 @@ public class CategoryService {
             categoryRepository.save(categoryDTO.convertToEntity());
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         } catch (Exception exception) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(
-                new ResponseDTO("Já existe uma categoria com este nome")
-            );
+            HashMap<String, String> response = new HashMap<>();
+            response.put("nome", "Já existe uma categoria com este nome");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
     }
 
     public ResponseEntity<CategoryDTO> getById(UUID id) {
         try {
-            CategoryDTO categoryDTO = categoryRepository.findById(id).get().convertToDTO();
-            return ResponseEntity.status(HttpStatus.OK).body(categoryDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(
+                categoryRepository.findById(id).get().convertToDTO()
+            );
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
@@ -87,12 +104,11 @@ public class CategoryService {
         return categoriesDTOs;
     }
 
-    public ResponseEntity<ResponseDTO> delete(UUID id) {
+    public ResponseEntity<CategoryDTO> delete(UUID id) {
 
-        if (!categoryRepository.existsById(id)) {
+        if (!categoryRepository.existsById(id)) 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-
+        
         categoryRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }

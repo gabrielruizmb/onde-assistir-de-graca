@@ -23,11 +23,15 @@ public class GenreService {
         if (genreDTO.name().isBlank() || genreDTO.name().length() > 30) {
 
             HashMap<String, String> response = new HashMap<String, String>();
-            response.put("name", "O nome deve conter entre 1 e 30 caracteres");
 
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                response
-            );
+            if (genreDTO.name().isBlank())
+                response.put("nome", "O nome não pode ficar em branco");
+
+            if (genreDTO.name().length() > 30)
+                response.put("nome", "O nome pode ter no máx. 30 caracteres");
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                                  .body(response);
         }
 
         try {
@@ -56,7 +60,12 @@ public class GenreService {
 
         if (genreDTO.name().isBlank() || genreDTO.name().length() > 30) {
             HashMap<String, String> response = new HashMap<String, String>();
-            response.put("name", "O nome deve conter entre 1 e 30 caracteres");
+
+            if (genreDTO.name().isBlank())
+                response.put("nome", "O nome não pode ficar em branco");
+
+            if (genreDTO.name().length() > 30)
+                response.put("nome", "O nome pode ter no máx. 30 caracteres");
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 response
@@ -86,8 +95,9 @@ public class GenreService {
 
     public ResponseEntity<GenreDTO> getById(UUID id) {
         try {
-            GenreDTO genreDTO = genreRepository.findById(id).get().convertToDTO();
-            return ResponseEntity.status(HttpStatus.OK).body(genreDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(
+                genreRepository.findById(id).get().convertToDTO()
+            );
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
@@ -95,9 +105,8 @@ public class GenreService {
 
     public ResponseEntity<GenreDTO> deleteById(UUID id) {
         
-        if (!genreRepository.existsById(id)) {
+        if (!genreRepository.existsById(id))
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
 
         genreRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);

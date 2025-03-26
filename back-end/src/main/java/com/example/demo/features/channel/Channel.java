@@ -1,4 +1,4 @@
-package com.example.demo.features.genre;
+package com.example.demo.features.channel;
 
 import java.util.UUID;
 
@@ -17,17 +17,20 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Genre {
+public class Channel {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    private String url;
 
     @Column(unique = true, nullable = false, length = 30)
     private String name;
     
     private String imageUrl;
 
-    public GenreDTO convertToDTO() {
-        return new GenreDTO(id, name, imageUrl);
+    public ChannelDTO convertToDTO() {
+        return new ChannelDTO(id, url, name, imageUrl);
     }
 }
