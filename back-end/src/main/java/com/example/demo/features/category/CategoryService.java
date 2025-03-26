@@ -85,11 +85,9 @@ public class CategoryService {
 
     public ResponseEntity<CategoryDTO> getById(UUID id) {
         try {
-            CategoryDTO categoryDTO = categoryRepository.findById(id)
-                                                         .get()
-                                                          .convertToDTO();
-
-            return ResponseEntity.status(HttpStatus.OK).body(categoryDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(
+                categoryRepository.findById(id).get().convertToDTO()
+            );
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
@@ -108,10 +106,9 @@ public class CategoryService {
 
     public ResponseEntity<CategoryDTO> delete(UUID id) {
 
-        if (!categoryRepository.existsById(id)) {
+        if (!categoryRepository.existsById(id)) 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-
+        
         categoryRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
