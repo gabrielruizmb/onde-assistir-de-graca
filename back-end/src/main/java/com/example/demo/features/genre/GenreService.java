@@ -30,9 +30,8 @@ public class GenreService {
             if (genreDTO.name().length() > 30)
                 response.put("nome", "O nome pode ter no máx. 30 caracteres");
 
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                response
-            );
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                                  .body(response);
         }
 
         try {
