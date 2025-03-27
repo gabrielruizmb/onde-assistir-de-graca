@@ -15,12 +15,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -30,6 +34,8 @@ public class Film {
     private String title;
 
     private int year;
+
+    private String posterUrl;
 
     private String description;
 
@@ -42,4 +48,17 @@ public class Film {
 
     @OneToMany(mappedBy = "film")
     private List<Channel> channels;
+
+    public FilmDTO convertToDTO() {
+        return new FilmDTO(
+            id, 
+            title, 
+            year,
+            posterUrl, 
+            description, 
+            category, 
+            genres, 
+            channels
+        );
+    }
 }
