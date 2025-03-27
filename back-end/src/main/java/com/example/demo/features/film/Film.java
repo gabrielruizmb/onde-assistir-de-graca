@@ -20,9 +20,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class Film {
