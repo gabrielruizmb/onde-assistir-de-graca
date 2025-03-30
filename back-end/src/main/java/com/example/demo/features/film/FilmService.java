@@ -1,6 +1,7 @@
 package com.example.demo.features.film;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,13 @@ public class FilmService {
             response.put("title", "Este título já existe");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
+    }
+
+    public ResponseEntity<HashMap<String, String>> update(UUID id, FilmDTO filmDTO) {
+
+        if (!filmRepository.existsById(id)) 
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+        return create(filmDTO);
     }
 }
