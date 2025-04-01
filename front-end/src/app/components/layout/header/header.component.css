@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(32, 31, 31);
+    text-shadow: 2px 2px 2px white;
+}
+
+menu {
+    display: flex;
+}
+
+#header-logo {
+    margin: 15px;
+}

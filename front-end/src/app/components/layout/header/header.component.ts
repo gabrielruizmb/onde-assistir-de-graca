@@ -20,9 +20,6 @@ export class HeaderComponent {
     this.categoryService.getAll().subscribe({
       next: (returnedCategories) => {
         this.categories = returnedCategories;
-        console.log("Sucesso!");
-        console.log(this.categories);
-        //window.alert("Sucesso!");
       },
       error: (error) => {
         console.log("Falha ao buscar a lista de categorias.");
