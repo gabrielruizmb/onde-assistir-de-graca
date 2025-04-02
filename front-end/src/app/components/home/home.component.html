@@ -1,2 +1,10 @@
 <app-header></app-header>
-<p>home works!</p>
+<menu id="categories-menu">
+    @for (category of categories; track $index) {
+        <li>
+            <p>{{category.name}}</p>
+            <img src="{{category.imageUrl}}" alt="">
+        </li>
+    }
+</menu>
+

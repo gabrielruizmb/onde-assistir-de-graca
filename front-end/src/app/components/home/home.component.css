@@ -1,0 +1,7 @@
+#categories-menu li{
+    list-style-type: none;
+}
+
+#categories-menu li img{
+    width: 150px;
+}

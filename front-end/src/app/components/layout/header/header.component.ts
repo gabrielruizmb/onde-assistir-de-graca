@@ -1,6 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { CategoryService } from '../../../services/category.service';
-import { Category } from '../../../models/category';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,21 +7,5 @@ import { Category } from '../../../models/category';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  categoryService = inject(CategoryService);
-  categories: Category[] = [];
 
-  constructor() {
-    this.getAll();
-  }
-
-  getAll() {
-    this.categoryService.getAll().subscribe({
-      next: (returnedCategories) => {
-        this.categories = returnedCategories;
-      },
-      error: (error) => {
-        console.log("Falha ao buscar a lista de categorias.");
-      }
-    })
-  }
 }
