@@ -1,7 +1,28 @@
-#categories-menu li{
+#categories-menu {
+    width: 180px;
+    background-color: rgb(20, 19, 19);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#categories-menu li {
     list-style-type: none;
 }
 
-#categories-menu li img{
+#categories-menu li figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#categories-menu li img {
     width: 150px;
+}
+
+#categories-menu li figure figcaption{
+    font-size: 1.5rem;
+    position: relative;
+    bottom: 60px;
+    text-shadow: 2px 2px 2px white;
 }

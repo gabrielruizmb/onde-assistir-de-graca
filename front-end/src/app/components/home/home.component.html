@@ -2,9 +2,10 @@
 <menu id="categories-menu">
     @for (category of categories; track $index) {
         <li>
-            <p>{{category.name}}</p>
-            <img src="{{category.imageUrl}}" alt="">
+            <figure>
+                <img src="{{category.imageUrl}}" alt="">
+                <figcaption>{{category.name}}</figcaption>
+            </figure>
         </li>
     }
 </menu>
-
