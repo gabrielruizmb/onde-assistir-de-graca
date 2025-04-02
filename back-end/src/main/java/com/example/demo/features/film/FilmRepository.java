@@ -8,5 +8,5 @@ import com.example.demo.features.category.Category;
 
 
 public interface FilmRepository extends JpaRepository<Film, UUID>{
-    //public List<Film> findByCategory(Category category);
+    public List<Film> findByCategory(Category category);
 }
