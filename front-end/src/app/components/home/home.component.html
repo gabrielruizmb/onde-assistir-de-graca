@@ -1,11 +1,18 @@
-<app-header></app-header>
-<menu id="categories-menu">
-    @for (category of categories; track $index) {
-        <li>
-            <figure>
-                <img src="{{category.imageUrl}}" alt="">
-                <figcaption>{{category.name}}</figcaption>
-            </figure>
-        </li>
-    }
-</menu>
+<div id="home-root">
+    <app-header></app-header>
+    <div id="home-body">
+        <menu id="categories-menu">
+            <div class="film-border">
+                @for (category of categories; track $index) {
+                    <li>
+                        <figure>
+                            <img src="{{category.imageUrl}}" alt="">
+                            <figcaption>{{category.name}}</figcaption>
+                        </figure>
+                    </li>
+                }
+            </div>
+        </menu>
+        <main></main>
+    </div>
+</div>
