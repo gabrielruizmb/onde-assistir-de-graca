@@ -1,4 +1,7 @@
 header {
+    position: fixed;
+    width: 100vw;
+    height: 69px;
     display: flex;
     justify-content: space-evenly;
     background-color: var(--primary-color);

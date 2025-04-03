@@ -1,4 +1,4 @@
-#home-root {
+#home-content {
     display: flex;
     flex-direction: column;
 }
@@ -10,11 +10,20 @@
 #categories-menu {
     position: fixed;
     width: 180px;
+    height: 100%;
+
+    margin-top: 69px;
+
     background-color: var(--primary-color);
-    display: flex;
-    flex-direction: column;
+
+    /* display: flex;
+    flex-direction: column; */
+
     padding-left: 10px;
     padding-right: 10px;
+
+    overflow-y: scroll;
+    scroll-behavior: smooth;
     /* border-left: 2.5px dashed white;
     border-right: 2.5px dashed white;
     padding: 10px; */
@@ -32,6 +41,10 @@
 
 #categories-menu li:first-child {
     margin-top: 20px;
+}
+
+#categories-menu li:last-child {
+    margin-bottom: 60px;
 }
 
 #categories-menu li figure {
