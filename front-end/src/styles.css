@@ -3,5 +3,7 @@
 * {
     margin: 0;
     padding: 0;
-    --primary-color: rgb(20, 19, 19);
+    --primary-dark: rgb(20, 19, 19);
+    --secondary-dark: rgb(8, 8, 8);
+    --primary-orange: rgb(255, 174, 0);
 }
