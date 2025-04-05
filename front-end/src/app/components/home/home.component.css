@@ -9,15 +9,15 @@
 
 #categories-menu {
     position: fixed;
-    width: 180px;
     height: 100%;
 
-    margin-top: 71px;
+    top: 69px;
 
     background-color: var(--primary-dark);
 
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
 
     padding-left: 10px;
     padding-right: 10px;
@@ -32,6 +32,9 @@
 .film-border {
     border-left: 7px dashed white;
     border-right: 7px dashed white;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #categories-menu li {
@@ -56,6 +59,7 @@
 
 #categories-menu li img {
     width: 150px;
+    height: 100px;
 }
 
 #categories-menu li figure figcaption{
