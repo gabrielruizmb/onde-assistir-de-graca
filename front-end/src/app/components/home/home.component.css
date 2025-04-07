@@ -13,6 +13,7 @@
 
     top: 116px;
 
+    border-right: 2px solid var(--secondary-dark);
     background-color: var(--primary-dark);
 
     display: flex;
@@ -78,4 +79,15 @@ main {
     height: 3000px;
     width: 2000px;
     background-color: var(--primary-orange);
+}
+
+@media (max-width: 390px) {
+    .film-border {
+        border: none;
+        padding: 0;
+    }
+
+    #categories-menu {
+        padding: 0;
+    }
 }
