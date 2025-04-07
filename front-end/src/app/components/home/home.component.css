@@ -11,7 +11,7 @@
     position: fixed;
     height: 100%;
 
-    top: 69px;
+    top: 116px;
 
     background-color: var(--primary-dark);
 
@@ -24,6 +24,12 @@
 
     overflow-y: scroll;
     scroll-behavior: smooth;
+
+    color: var(--secondary-dark);
+
+    font-family: var(--primary-font), cursive;
+    font-weight: 700;
+
     /* border-left: 2.5px dashed white;
     border-right: 2.5px dashed white;
     padding: 10px; */
@@ -32,7 +38,6 @@
 .film-border {
     border-left: 7px dashed white;
     border-right: 7px dashed white;
-    box-sizing: border-box;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -47,7 +52,7 @@
 }
 
 #categories-menu li:last-child {
-    margin-bottom: 60px;
+    margin-bottom: 105px;
 }
 
 #categories-menu li figure {
@@ -66,7 +71,7 @@
     font-size: 1.5rem;
     position: relative;
     bottom: 60px;
-    text-shadow: 2px 2px 2px white;
+    -webkit-text-stroke: 0.05rem var(--primary-white);
 }
 
 main {

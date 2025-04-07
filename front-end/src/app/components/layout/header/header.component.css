@@ -2,16 +2,31 @@ header {
     position: fixed;
     box-sizing: border-box;
     width: 100vw;
-    height: 69px;
+    height: 116px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     background-color: var(--primary-dark);
     /* background-color: rgb(32, 31, 31); */
-    text-shadow: 2px 2px 2px white;
     border-bottom: 2px solid var(--secondary-dark);
-    color: var(--secondary-dark);
 }
 
 #header-logo {
-    margin: 15px;
+    width: 340px;
+    height: 114px;
+
+    border-left: 2px solid var(--secondary-dark);
+    border-right: 2px solid var(--secondary-dark);
+
+    font-size: 1.20rem;
+    text-align: center;
+    align-content: center;
+    font-family: var(--primary-font), cursive;
+    -webkit-text-stroke: 0.10rem var(--secondary-dark);
+
+    color: var(--primary-white);
+
+    background-image: url(https://aventurasnahistoria.com.br/media/_versions/2025/01/magico-de-oz-5_widelg.jpg);
+    /* background-image: url(https://s2.glbimg.com/q7BKzEx0y8OwqiGHozFMxen1tu4=/e.glbimg.com/og/ed/f/original/2019/09/18/the-wizard-of-oz.jpg); */
+    background-size: 340px 116px;
+    background-repeat: no-repeat;
 }
