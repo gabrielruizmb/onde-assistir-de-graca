@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import com.example.demo.features.category.Category;
 import com.example.demo.features.channel.Channel;
-import com.example.demo.features.genre.Genre;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,16 +43,6 @@ public class Film {
     @ManyToOne(optional = true)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "film_genre",
-        joinColumns = 
-            @JoinColumn(name = "film_id", referencedColumnName = "id"),
-        inverseJoinColumns = 
-            @JoinColumn(name = "genre_id", referencedColumnName = "id")
-    )
-    private List<Genre> genres;
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -73,7 +62,6 @@ public class Film {
             posterUrl, 
             description,
             category,
-            genres,
             channels
         );
     }

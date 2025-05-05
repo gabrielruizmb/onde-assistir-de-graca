@@ -42,6 +42,11 @@ public class FilmController {
         return filmService.getAll();
     }
 
+    @GetMapping("by-category/{id}")
+    public ResponseEntity<List<FilmDTO>> getByCategory(@PathVariable UUID id) {
+        return filmService.getByCategory(id);
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<FilmDTO> getById(@PathVariable UUID id) {
         return filmService.getById(id);

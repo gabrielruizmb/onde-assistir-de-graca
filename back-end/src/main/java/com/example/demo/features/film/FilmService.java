@@ -9,13 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.features.category.Category;
+import com.example.demo.features.category.CategoryRepository;
+
 @Service
 public class FilmService {
     
     private final FilmRepository filmRepository;
+    private final CategoryRepository categoryRepository;
 
-    public FilmService(FilmRepository filmRepository) {
+    public FilmService(FilmRepository filmRepository, 
+                       CategoryRepository categoryRepository) {
         this.filmRepository = filmRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public ResponseEntity<HashMap<String, String>> create(FilmDTO filmDTO) {
@@ -56,6 +62,19 @@ public class FilmService {
     public ResponseEntity<List<FilmDTO>> getAll() {
         List<FilmDTO> filmDTOs = new ArrayList<>();
         List<Film> films = filmRepository.findAll();
+
+        for (Film film : films) {
+            filmDTOs.add(film.convertToDTO());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(filmDTOs);
+    }
+
+    public ResponseEntity<List<FilmDTO>> getByCategory(UUID id) {
+        Category category = categoryRepository.findById(id).get();
+        
+        List<FilmDTO> filmDTOs = new ArrayList<>();
+        List<Film> films = filmRepository.findByCategory(category);
 
         for (Film film : films) {
             filmDTOs.add(film.convertToDTO());

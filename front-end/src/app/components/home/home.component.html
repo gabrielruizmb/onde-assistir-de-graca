@@ -1,2 +1,24 @@
-<app-header></app-header>
-<p>home works!</p>
+<div id="home-content">
+    <app-header></app-header>
+    <div id="home-body">
+        <menu id="categories-menu">
+            <div class="film-border">
+                <li>
+                    <figure>
+                        <img src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" alt="">
+                        <figcaption>Todos</figcaption>
+                    </figure>
+                </li>
+                @for (category of categories; track $index) {
+                    <li>
+                        <figure>
+                            <img src="{{category.imageUrl}}" alt="">
+                            <figcaption>{{category.name}}</figcaption>
+                        </figure>
+                    </li>
+                }
+            </div>
+        </menu>
+        <main></main>                                                           
+    </div>
+</div>
