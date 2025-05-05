@@ -23,18 +23,13 @@ public class CategoryServiceTests {
     @MockitoBean
     CategoryRepository categoryRepository;
 
-    @MockitoBean
-    Category category;
-
     @Test
     @DisplayName("Cenário 001 - Testando método getAll")
     void scenario001() {
 
         List<Category> categories = new ArrayList<>();
-        CategoryDTO categoryDTO = new CategoryDTO(null, null, null);
 
         when(categoryRepository.findAll()).thenReturn(categories);
-        when(category.convertToDTO()).thenReturn(categoryDTO);
 
         ResponseEntity<List<CategoryDTO>> list = categoryService.getAll();
 
