@@ -3,7 +3,6 @@ package com.example.demo.features.film;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.demo.features.genre.Genre;
 import com.example.demo.features.channel.Channel;
 import com.example.demo.features.category.Category;
 
@@ -14,7 +13,6 @@ public record FilmDTO(
     String posterUrl,
     String description,
     Category category,
-    List<Genre> genres,
     List<Channel> channels
 ) {
     
@@ -26,7 +24,6 @@ public record FilmDTO(
             posterUrl, 
             description,
             category,
-            genres,
             channels
         );
     }

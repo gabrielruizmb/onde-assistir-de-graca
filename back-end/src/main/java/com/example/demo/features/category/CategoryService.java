@@ -93,7 +93,7 @@ public class CategoryService {
         }
     }
 
-    public List<CategoryDTO> getAll() {
+    public ResponseEntity<List<CategoryDTO>> getAll() {
         List<Category> categories = categoryRepository.findAll();
         List<CategoryDTO> categoriesDTOs = new ArrayList<>();
         
@@ -101,7 +101,7 @@ public class CategoryService {
             categoriesDTOs.add(category.convertToDTO());
         }
 
-        return categoriesDTOs;
+        return ResponseEntity.status(HttpStatus.OK).body(categoriesDTOs);
     }
 
     public ResponseEntity<CategoryDTO> delete(UUID id) {
