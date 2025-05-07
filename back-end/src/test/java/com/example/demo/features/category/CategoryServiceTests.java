@@ -5,6 +5,8 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +26,7 @@ public class CategoryServiceTests {
     CategoryRepository categoryRepository;
 
     @Test
-    @DisplayName("Cenário 001 - Testando método getAll")
+    @DisplayName("Cenário 001 - Teste unitário - getAll")
     void scenario001() {
 
         List<Category> categories = new ArrayList<>();
@@ -34,5 +36,29 @@ public class CategoryServiceTests {
         ResponseEntity<List<CategoryDTO>> list = categoryService.getAll();
 
         assertEquals(HttpStatus.OK, list.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Cenário 002 - Teste unitário - getById com id válido")
+    void scenario002() {
+         
+        UUID id = new UUID(0, 0);
+        Category category = new Category(null, null, null);
+        Optional<Category> optionalCategory = Optional.of(category);
+
+        when(categoryRepository.findById(id)).thenReturn(optionalCategory);
+
+        categoryService.getById(id);
+    }
+
+    @Test
+    @DisplayName("Cenário 003 - Teste unitário - getById com id inválido")
+    void scenario003() {
+        Category category = new Category(null, null, null);
+        Optional<Category> optionalCategory = Optional.of(category);
+
+        when(categoryRepository.findById(null)).thenReturn(optionalCategory);
+
+        categoryService.getById(null);
     }
 }
