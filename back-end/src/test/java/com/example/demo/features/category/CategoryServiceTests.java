@@ -1,6 +1,9 @@
 package com.example.demo.features.category;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -54,11 +57,12 @@ public class CategoryServiceTests {
     @Test
     @DisplayName("Cenário 003 - Teste unitário - getById com id inválido")
     void scenario003() {
-        Category category = new Category(null, null, null);
-        Optional<Category> optionalCategory = Optional.of(category);
 
-        when(categoryRepository.findById(null)).thenReturn(optionalCategory);
+        when(categoryRepository.findById(null)).thenThrow(IllegalArgumentException.class);
 
-        categoryService.getById(null);
+        ResponseEntity<?> response = categoryService.getById(null);
+
+        assertTrue(response.getStatusCode().equals(HttpStatus.NOT_FOUND));
+        assertNull(response.getBody());
     }
 }
