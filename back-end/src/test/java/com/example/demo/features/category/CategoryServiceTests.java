@@ -2,7 +2,6 @@ package com.example.demo.features.category;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -58,11 +57,29 @@ public class CategoryServiceTests {
     @DisplayName("Cenário 003 - Teste unitário - getById com id inválido")
     void scenario003() {
 
-        when(categoryRepository.findById(null)).thenThrow(IllegalArgumentException.class);
+        when(categoryRepository.findById(null))
+            .thenThrow(IllegalArgumentException.class);
 
         ResponseEntity<?> response = categoryService.getById(null);
 
         assertTrue(response.getStatusCode().equals(HttpStatus.NOT_FOUND));
         assertNull(response.getBody());
     }
+
+    @Test
+    @DisplayName("Cenário 004 - Teste unitário - delete com id inválido")
+    void scenario004() {
+
+        when(categoryRepository.existsById(null)).thenReturn(false);
+        categoryService.delete(null);
+    }
+
+    // @Test
+    // @DisplayName("Cenário 005 - Teste unitário - delete com id válido");
+    // void scenario005() {
+
+    //     UUID id = new UUID(0, 0);
+
+    //     when(categoryRepository.existsById(id)).thenReturn(true);
+    // }
 }
