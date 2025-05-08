@@ -9,17 +9,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.demo.features.film.Film;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,21 +27,13 @@ public class User implements UserDetails{
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+	private String fullName;
+
     private String email;
 
     private String password;
 
     private String role;
-
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-		name = "user_favorite",
-		joinColumns = 
-			@JoinColumn(name = "user_id", referencedColumnName = "id"),
-		inverseJoinColumns = 
-			@JoinColumn(name = "film_id", referencedColumnName = "id")
-	)
-	private List<Film> favorites;
 
     @Override
 	@JsonIgnore
