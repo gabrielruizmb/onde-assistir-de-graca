@@ -57,7 +57,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         if (authHeader == null)
             return null;
 
-        return authHeader;
+        return authHeader.replace("Bearer ", "");
     }
 
 }

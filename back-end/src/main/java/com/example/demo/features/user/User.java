@@ -35,13 +35,13 @@ public class User implements UserDetails{
 	@Column(unique = true, nullable = false, length = 50)
     private String email;
 	
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false)
     private String password;
 	
 	@Column(nullable = false, length = 50)
 	private String fullName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
     private String role;
 
     @Override

@@ -44,6 +44,8 @@ public class SecurityConfigurations {
                         .permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/films/{id}")
                         .permitAll()
+                    .requestMatchers(HttpMethod.POST, "/api/users/login")
+                        .permitAll()
                     .anyRequest().authenticated()
                 )
                 .addFilterBefore(
