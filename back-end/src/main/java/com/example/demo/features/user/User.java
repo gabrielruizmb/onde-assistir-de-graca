@@ -11,28 +11,37 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails{
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
+	
+	@Column(unique = true, nullable = false, length = 50)
+    private String email;
+	
+	@Column(nullable = false, length = 50)
+    private String password;
+	
+	@Column(nullable = false, length = 50)
 	private String fullName;
 
-    private String email;
-
-    private String password;
-
+	@Column(nullable = false)
     private String role;
 
     @Override
