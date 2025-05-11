@@ -1,6 +1,5 @@
 package com.example.demo.features.user;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service

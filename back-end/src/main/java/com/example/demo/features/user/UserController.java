@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.infra.security.TokenService;
+import com.example.demo.configs.TokenService;
 
 @RestController
 @RequestMapping("/api/users")
@@ -33,7 +33,7 @@ public class UserController {
 
         var auth = authenticationManager.authenticate(usernamePassword);
 
-        var token = tokenService.generateToken((User) auth.getPrincipal());
+        var token = tokenService.generateToken(auth);
 
         return ResponseEntity.status(HttpStatus.OK)
                              .body(new LoginResponseDTO(token));
