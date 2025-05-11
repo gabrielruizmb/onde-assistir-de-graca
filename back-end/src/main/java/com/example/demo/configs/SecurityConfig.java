@@ -38,7 +38,14 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/api/users/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/categories")
+                            .permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/channels")
+                            .permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/films")
+                            .permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/films/{id}")
+                            .permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
