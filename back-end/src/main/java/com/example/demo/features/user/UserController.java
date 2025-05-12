@@ -53,7 +53,7 @@ public class UserController {
 
     @PostMapping("/signup")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> signUp(
+    public ResponseEntity<LoginResponseDTO> signUp(
         @RequestBody UserRegisterDTO userRegisterDTO
     ) {
 
@@ -63,7 +63,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
         } catch(Exception exception) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                 .body(exception.getMessage());
+                                 .body(new LoginResponseDTO(exception.getMessage()));
         }
     }
 }
