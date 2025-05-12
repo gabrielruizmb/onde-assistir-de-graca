@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class ChannelController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<HashMap<String, String>> post(@RequestBody 
                                                         ChannelDTO 
                                                         channelDTO) {
@@ -32,6 +34,7 @@ public class ChannelController {
     }
 
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<HashMap<String, String>> put(
         @PathVariable UUID id, @RequestBody ChannelDTO channelDTO) {
 
@@ -43,12 +46,15 @@ public class ChannelController {
         return channelService.getAll();
     }
 
+    
     @GetMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ChannelDTO> getById(@PathVariable UUID id) {
         return channelService.getById(id);
     }
     
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ChannelDTO> deleteById(@PathVariable UUID id) {
         return channelService.deleteById(id);
     }

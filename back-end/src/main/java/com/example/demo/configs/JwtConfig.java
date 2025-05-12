@@ -12,8 +12,6 @@ public class JwtConfig {
     
     private String secret = "T3RC3SR3PUSEHTS1S013ST3RC3SR3PUSEHTS1S013ST3RC3SR3PUSEHT";
     
-    private long jwtExpiration = 86400000;
-    
     private String algorithm = "HS256";
     
 

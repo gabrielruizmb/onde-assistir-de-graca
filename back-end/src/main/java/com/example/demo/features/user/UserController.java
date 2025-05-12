@@ -2,6 +2,7 @@ package com.example.demo.features.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,27 +16,56 @@ import com.example.demo.configs.TokenService;
 @RequestMapping("/api/users")
 public class UserController {
     
+    private final UserService userService;
     private final TokenService tokenService;
     private final AuthenticationManager authenticationManager;
 
-    public UserController(TokenService tokenService, AuthenticationManager authenticationManager) {
+    public UserController(
+        UserService userService, 
+        TokenService tokenService, 
+        AuthenticationManager authenticationManager
+    ) {
+        this.userService = userService;
         this.tokenService = tokenService;
         this.authenticationManager = authenticationManager;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(
+    public ResponseEntity<GenericResponseDTO> login(
         @RequestBody LoginRequestDTO loginRequestDTO
     ) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(
-            loginRequestDTO.email(), loginRequestDTO.password()
-        );
+        try {
+            var usernamePassword = new UsernamePasswordAuthenticationToken(
+                loginRequestDTO.email(), loginRequestDTO.password()
+            );
+    
+            var auth = authenticationManager.authenticate(usernamePassword);
+    
+            var token = tokenService.generateToken(auth);
+    
+            return ResponseEntity.status(HttpStatus.OK)
+                                 .body(new GenericResponseDTO(token));
+        } catch(Exception exception) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(
+                        new GenericResponseDTO("Usuário ou senha incorretos")
+                    );
+        }
+    }
 
-        var auth = authenticationManager.authenticate(usernamePassword);
+    @PostMapping("/signup")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<GenericResponseDTO> signUp(
+        @RequestBody UserRegisterDTO userRegisterDTO
+    ) {
 
-        var token = tokenService.generateToken(auth);
+        try {
+            userService.create(userRegisterDTO);
 
-        return ResponseEntity.status(HttpStatus.OK)
-                             .body(new LoginResponseDTO(token));
+            return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        } catch(Exception exception) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                                 .body(new GenericResponseDTO(exception.getMessage()));
+        }
     }
 }
