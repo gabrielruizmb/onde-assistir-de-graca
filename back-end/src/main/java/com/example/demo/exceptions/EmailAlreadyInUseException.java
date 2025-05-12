@@ -1,4 +1,4 @@
-package com.example.demo.features.user;
+package com.example.demo.exceptions;
 
 public class EmailAlreadyInUseException extends Exception{
     
