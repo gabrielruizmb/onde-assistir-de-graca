@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,8 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
-
+    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<HashMap<String, String>> create(
         @RequestBody CategoryDTO categoryDTO) {
@@ -34,6 +36,7 @@ public class CategoryController {
     }
 
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<HashMap<String, String>> update(
         @RequestBody CategoryDTO categoryDTO,
         @PathVariable UUID id) {
@@ -41,6 +44,7 @@ public class CategoryController {
     }
 
     @GetMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CategoryDTO> getById(@PathVariable UUID id) {
         return categoryService.getById(id);
     }
@@ -51,6 +55,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<CategoryDTO> delete(@PathVariable UUID id) {
         return categoryService.delete(id);
     }

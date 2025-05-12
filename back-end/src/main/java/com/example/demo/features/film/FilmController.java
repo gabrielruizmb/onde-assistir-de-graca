@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +26,14 @@ public class FilmController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_COLLABORATOR')")
     public ResponseEntity<HashMap<String, String>> post(@RequestBody 
                                                         FilmDTO filmDTO) {
         return filmService.create(filmDTO);
     }
-
+    
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<HashMap<String, String>> put(
         @PathVariable UUID id, @RequestBody FilmDTO filmDTO
     ) {
@@ -48,11 +51,13 @@ public class FilmController {
     }
 
     @GetMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<FilmDTO> getById(@PathVariable UUID id) {
         return filmService.getById(id);
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<FilmDTO> deleteById(@PathVariable UUID id) {
         return filmService.deleteById(id);
     }
