@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(
+    public ResponseEntity<GenericResponseDTO> login(
         @RequestBody LoginRequestDTO loginRequestDTO
     ) {
         try {
@@ -44,16 +44,18 @@ public class UserController {
             var token = tokenService.generateToken(auth);
     
             return ResponseEntity.status(HttpStatus.OK)
-                                 .body(new LoginResponseDTO(token));
+                                 .body(new GenericResponseDTO(token));
         } catch(Exception exception) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(new LoginResponseDTO("Usuário ou senha incorretos"));
+                    .body(
+                        new GenericResponseDTO("Usuário ou senha incorretos")
+                    );
         }
     }
 
     @PostMapping("/signup")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<LoginResponseDTO> signUp(
+    public ResponseEntity<GenericResponseDTO> signUp(
         @RequestBody UserRegisterDTO userRegisterDTO
     ) {
 
@@ -63,7 +65,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
         } catch(Exception exception) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                 .body(new LoginResponseDTO(exception.getMessage()));
+                                 .body(new GenericResponseDTO(exception.getMessage()));
         }
     }
 }

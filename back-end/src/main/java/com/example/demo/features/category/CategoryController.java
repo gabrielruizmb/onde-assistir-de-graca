@@ -55,7 +55,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CategoryDTO> delete(@PathVariable UUID id) {
         return categoryService.delete(id);
     }
