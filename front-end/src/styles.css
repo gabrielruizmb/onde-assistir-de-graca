@@ -18,3 +18,21 @@
     --secondary-orange: rgb(255, 145, 0);
     --primary-white: white;
 }
+
+.default-button {
+    background-color: var(--primary-orange);
+    border-radius: 30px;
+    border: 2px solid var(--secondary-dark);
+    padding: 10px;
+
+    text-decoration-line: none;
+    color: var(--secondary-dark);
+
+    font-weight: bold;
+}
+
+.default-input {
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

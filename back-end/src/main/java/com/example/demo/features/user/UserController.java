@@ -30,8 +30,8 @@ public class UserController {
         this.authenticationManager = authenticationManager;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<GenericResponseDTO> login(
+    @PostMapping("/sign-in")
+    public ResponseEntity<GenericResponseDTO> signIn(
         @RequestBody LoginRequestDTO loginRequestDTO
     ) {
         try {
