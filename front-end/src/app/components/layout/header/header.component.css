@@ -3,17 +3,24 @@ header {
     box-sizing: border-box;
     width: 100vw;
     height: 116px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1.75fr 1fr;
     background-color: rgb(8, 8, 8);
     background-color: rgb(32, 31, 31);
     border-bottom: 2px solid var(--secondary-dark);
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#header-logo-box {
+    display: flex;
+    justify-content: end;
 }
 
 #header-logo {
     width: 340px;
     height: 114px;
-
+    
     border-left: 2px solid var(--secondary-dark);
     border-right: 2px solid var(--secondary-dark);
 
@@ -29,4 +36,22 @@ header {
     /* background-image: url(https://s2.glbimg.com/q7BKzEx0y8OwqiGHozFMxen1tu4=/e.glbimg.com/og/ed/f/original/2019/09/18/the-wizard-of-oz.jpg); */
     background-size: 340px 116px;
     background-repeat: no-repeat;
+}
+
+#header-menu-box {
+    display: flex;
+    justify-content: end;
+}
+
+#header-menu {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+@media (max-width: 390px) {
+    #header-logo {
+        width: 240px;
+        font-size: 1rem;
+    }
 }
