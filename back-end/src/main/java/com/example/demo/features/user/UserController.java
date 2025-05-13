@@ -53,7 +53,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<GenericResponseDTO> signUp(
         @RequestBody UserRegisterDTO userRegisterDTO
