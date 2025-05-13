@@ -6,9 +6,10 @@
     width: 100vw;
     height: 100vh;
 
-    background-color: var(--primary-orange);
+    /* background-color: var(--primary-orange); */
+    background-image: url('/film-background.jpg');
 
-    font-family: 'Mali';
+    font-family: 'Poppins';
 }
 
 #sign-in-card {
