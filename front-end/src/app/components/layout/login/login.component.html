@@ -1,15 +1,16 @@
 <div id="root">
     <div id="sign-in-card">
+        <h3>Onde assistir de graça</h3>
         <h2>Entrar</h2>
         <div class="input">
             <label for="">E-mail</label>
-            <input type="email" class="default-input">
+            <input [(ngModel)] = "login.email" type="email" class="default-input">
         </div>
         <div class="input">
             <label for="">Senha</label>
-            <input type="password" class="default-input">
+            <input [(ngModel)] = "login.password" type="password" class="default-input">
         </div>
-        <button type="submit" class="default-button">Entrar</button>
+        <button (click) = "signIn()" type="submit" class="default-button">Entrar</button>
         <p>
             <span>Aviso: </span>esta área destina-se somentes <br>
             aos colaboradores de conteúdo do site!
