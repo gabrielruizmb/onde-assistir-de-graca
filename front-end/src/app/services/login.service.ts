@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Login } from '../models/login';
 import { Observable } from 'rxjs';
-import { Genericresponse } from '../models/genericresponse';
+import { GenericResponse } from '../models/generic-response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class LoginService {
 
   constructor() { }
 
-  signIn(login: Login): Observable<Genericresponse> {
-    return this.http.post<Genericresponse>(this.url, login);
+  signIn(login: Login): Observable<GenericResponse> {
+    return this.http.post<GenericResponse>(this.url, login);
   }
 }
