@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Login } from '../../../models/login';
 import { FormsModule } from '@angular/forms';
-import { LoginService } from '../../../services/login.service';
+import { UserService } from '../../../services/user.service';
 import { GenericResponse } from '../../../models/generic-response';
 
 @Component({
@@ -13,22 +13,23 @@ import { GenericResponse } from '../../../models/generic-response';
 export class LoginComponent {
 
   login: Login = new Login();
-  loginService = inject(LoginService);
+  error!: string;
+  userService = inject(UserService);
 
   constructor() {
-    localStorage.removeItem("token");
+    this.userService.removeToken(); 
   }
 
   signIn() {
 
-    this.loginService.signIn(this.login).subscribe({
-      next: (GenericResponse) => {
-        localStorage.setItem("token", GenericResponse.response);
+    this.userService.signIn(this.login).subscribe({
+      next: (response) => {
+        this.userService.setToken(response.response);
       },
-      error: (GenericResponse) => {
-        window.alert("Usuário ou senha incorretos!")
+      error: (response) => {
+        this.error = response.error.response;
+        console.log(this.error);
       }
     })
   }
-
 }
