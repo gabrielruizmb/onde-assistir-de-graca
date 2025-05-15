@@ -1,3 +1,3 @@
 export class GenericResponse {
-    response!: string;
+    message!: string;
 }

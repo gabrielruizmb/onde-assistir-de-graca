@@ -24,10 +24,10 @@ export class LoginComponent {
 
     this.userService.signIn(this.login).subscribe({
       next: (response) => {
-        this.userService.setToken(response.response);
+        this.userService.setToken(response.message);
       },
       error: (response) => {
-        this.error = response.error.response;
+        this.error = response.error.message;
         console.log(this.error);
       }
     })
