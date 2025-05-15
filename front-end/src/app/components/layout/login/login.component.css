@@ -18,14 +18,29 @@
     justify-content: space-evenly;
     align-items: center;
 
-    height: 400px;
+    height: 500px;
+    max-width: 300px;
 
+    margin: 20px;
     padding: 20px;
     border-radius: 30px;
     border: 2px solid var(--secondary-dark);
 
     color: var(--primary-orange);
     background-color: var(--primary-dark);
+}
+
+#logo {
+    text-align: center;
+    
+    font-family: var(--primary-font), cursive;
+    -webkit-text-stroke: 0.10rem var(--secondary-dark);
+
+    color: var(--primary-white);
+}
+
+#sign-in-card p {
+    text-align: center;
 }
 
 .input {
