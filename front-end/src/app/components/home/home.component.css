@@ -72,7 +72,7 @@
     font-size: 1.5rem;
     position: relative;
     bottom: 60px;
-    -webkit-text-stroke: 0.05rem var(--primary-white);
+    -webkit-text-stroke: 0.075rem var(--primary-white);
 }
 
 main {

@@ -41,3 +41,22 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.default-card {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 30px;
+    border: 2px solid var(--secondary-dark);
+
+    color: var(--primary-orange);
+    background-color: var(--primary-dark);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img:last-child{
+    width: 200px;
+}
