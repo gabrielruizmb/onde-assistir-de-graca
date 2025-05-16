@@ -76,11 +76,17 @@
 }
 
 main {
-    height: 3000px;
-    width: 2000px;
+    margin-top: 180px;
+    margin-left: 300px;
+    /* height: 3000px;
+    width: 2000px; */
     background-color: var(--primary-orange);
     /* background-image: url('/film-background.jpg'); */
 
+}
+
+main img {
+    width: 300px;
 }
 
 @media (max-width: 390px) {

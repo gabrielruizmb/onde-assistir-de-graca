@@ -57,6 +57,20 @@
     align-items: center;
 }
 
-.logo img:last-child{
+.logo img:first-child {
+    width: 75px;
+}
+
+.logo img:last-child {
     width: 200px;
+}
+
+@media(max-width: 340px) {
+    .logo img:first-child{
+        width: 50px;
+    }
+    
+    .logo img:last-child{
+        width: 150px;
+    }
 }

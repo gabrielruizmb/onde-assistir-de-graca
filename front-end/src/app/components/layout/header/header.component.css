@@ -14,8 +14,18 @@ header {
     background-color: rgb(32, 31, 31);
     border-bottom: 2px solid var(--secondary-dark);
     padding-left: 15px;
-    padding-right: 15px;
+    padding-right: 7.5px;
 }
+
+#header-menu {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header-menu-item {
+    margin: 7.5px;
+}
+
     /*
 
 #header-logo-box {
