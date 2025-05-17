@@ -1,5 +1,13 @@
 #home-content {
     padding-top: 116px;
+
+    display: flex;
+
+    position: relative;
+    top: 60px;
+    z-index: 0;
+
+    background-color: var(--primary-orange);
 }
 
 #categories-menu {
@@ -10,11 +18,39 @@
     height: 120.39px;
 }
 
+#categories-menu figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .film-frame {
+    position: absolute;
+
     width: 180px;
     height: 120.39px;
 }
 
+.film-frame-figure {
+    position: absolute;
+
+    width: 120px;
+    height: 100px;
+}
+
+#categories-menu figcaption{
+    /* position: relative; */
+    position: absolute;
+
+    font-family: 'Mali';
+    font-size: 1.5rem;
+    font-weight: bold;
+    -webkit-text-stroke: 0.05rem var(--primary-white);
+}
+
 #categories-menu li {
     list-style-type: none;
+}
+
+main {
 }
