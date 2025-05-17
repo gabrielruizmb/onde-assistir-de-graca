@@ -1,31 +1,21 @@
+<app-header></app-header>
 <div id="home-content">
-    <app-header></app-header>
-    <div id="home-body">
-        <menu id="categories-menu">
-            <div class="film-border">
-                <li>
-                    <figure>
-                        <img src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" alt="">
-                        <figcaption>Todos</figcaption>
-                    </figure>
-                </li>
-                @for (category of categories; track $index) {
-                    <li>
-                        <figure>
-                            <img src="{{category.imageUrl}}" alt="">
-                            <figcaption>{{category.name}}</figcaption>
-                        </figure>
-                    </li>
-                }
-            </div>
-        </menu>
-        <main>
-            <img src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" alt="">
-            <img src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" alt="">
-            <img src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" alt="">
-            <img src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" alt="">
-            <img src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" alt="">
-            <img src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" alt="">
-        </main>                                                           
-    </div>
+    <menu id="categories-menu">
+        <li>
+            <figure>
+                <img src="golden-film-frame.png" alt="" class="film-frame">
+                <img src="golden-film-frame.png" alt="" class="film-frame">
+            </figure>
+        </li>
+        <li>
+            <figure>
+                <img src="golden-film-frame.png" alt="" class="film-frame">
+            </figure>
+        </li>
+        <li>
+            <figure>
+                <img src="golden-film-frame.png" alt="" class="film-frame">
+            </figure>
+        </li>
+    </menu>
 </div>

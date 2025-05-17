@@ -19,6 +19,7 @@ header {
 
 #header-menu {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
