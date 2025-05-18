@@ -49,4 +49,8 @@ export class UserService {
 
     else return false;
   }
+
+  getCurrentUser() {
+    return this.jwtDecode() as User;
+  }
 }

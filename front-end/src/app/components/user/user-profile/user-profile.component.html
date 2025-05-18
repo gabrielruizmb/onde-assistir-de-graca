@@ -1,11 +1,28 @@
 <div id="root">
     <app-header></app-header>
     <main id="user-profile-body">
-        <div id="user-profile-info" class="default-card">
+        <a href="/home" class="default-button return-button">Voltar</a>
+        <article id="user-profile-info" class="default-card user-default-card">
+            <img src="big-person-icon.png" alt="Ícone de uma pessoa/usuário" class="user-profile-info-icon">
+            <h3>Meus dados</h3>
+            <div class="user-data">
+                <span>Nome: </span>
+                <p>{{currentUser.name}}</p>
+
+                <span>E-mail: </span>
+                <p>{{currentUser.email}}</p>
+
+                <span>Cargo: </span>
+                @if(userService.hasRole('ROLE_ADMIN')) {
+                    <p>Administrador(a)</p>
+                }
+                @if(userService.hasRole('ROLE_COLLABORATOR')) {
+                    <p>Colaborador(a)</p>
+                }
+            </div>
+        </article>
+        <article id="user-profile-add-user" class="default-card user-default-card">
     
-        </div>
-        <div id="user-profile-add-user" class="default-card">
-    
-        </div>
+        </article>
     </main>
 </div>

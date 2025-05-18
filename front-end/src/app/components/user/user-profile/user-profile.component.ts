@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '../../layout/header/header.component';
+import { User } from '../../../models/user';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,5 +10,8 @@ import { HeaderComponent } from '../../layout/header/header.component';
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent {
+
+  userService = inject(UserService);
+  currentUser: User = this.userService.getCurrentUser();
 
 }
