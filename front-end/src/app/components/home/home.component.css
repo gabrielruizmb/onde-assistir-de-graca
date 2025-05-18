@@ -1,16 +1,21 @@
 #home-content {
-    padding-top: 116px;
-
     display: flex;
 
     position: relative;
-    top: 60px;
+    top: 116px;
     z-index: 0;
 
     background-color: var(--primary-orange);
 }
 
-#categories-menu {
+@media(min-width: 460px) {
+    .film-card {
+        margin: 30px;
+    }
+}
+
+/* #categories-menu {
+    margin-top: 60px;
     width: 180px;
 }
 
@@ -39,7 +44,37 @@
 }
 
 #categories-menu figcaption{
-    /* position: relative; */
+    position: absolute;
+
+    font-family: 'Mali';
+    font-size: 1.5rem;
+    font-weight: bold;
+    -webkit-text-stroke: 0.05rem var(--primary-white);
+} */
+
+#categories-menu {
+    background-color: var(--primary-dark);
+    border-right: 2px solid var(--secondary-dark);
+}
+
+#categories-menu li {
+    list-style-type: none;
+    margin: 10px;
+}
+
+.film-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px ridge var(--secondary-dark);
+}
+
+.film-frame-figure {
+    width: 150px;
+    height: 100px;
+}
+
+#categories-menu figcaption{
     position: absolute;
 
     font-family: 'Mali';
@@ -48,9 +83,37 @@
     -webkit-text-stroke: 0.05rem var(--primary-white);
 }
 
-#categories-menu li {
-    list-style-type: none;
+main {
+    display: flex;
+    justify-content: center;
 }
 
-main {
+.films-section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.film-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 155px;
+
+    margin-bottom: 20px;
+}
+
+.film-card-poster {
+    width: 150px;
+
+    border: 5px ridge var(--primary-dark);
+}
+
+.film-card-title {
+    font-family: 'Poppins';
+    font-weight: bold;
+    text-align: center;
 }

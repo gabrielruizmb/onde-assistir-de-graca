@@ -2,8 +2,7 @@
 <div id="home-content">
     <menu id="categories-menu">
         <li>
-            <figure>
-                <img src="golden-film-frame.png" alt="" class="film-frame">
+            <figure class="film-frame">
                 <img 
                     src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
                     alt="" 
@@ -12,9 +11,8 @@
                 <figcaption>Todos</figcaption>
             </figure>
         </li>
-        <li>
-            <figure>
-                <img src="golden-film-frame.png" alt="" class="film-frame">
+        <!-- <li>
+            <figure class="film-frame">
                 <img 
                     src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
                     alt="" 
@@ -24,8 +22,7 @@
             </figure>
         </li>
         <li>
-            <figure>
-                <img src="golden-film-frame.png" alt="" class="film-frame">
+            <figure class="film-frame">
                 <img 
                     src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
                     alt="" 
@@ -35,8 +32,7 @@
             </figure>
         </li>
         <li>
-            <figure>
-                <img src="golden-film-frame.png" alt="" class="film-frame">
+            <figure class="film-frame">
                 <img 
                     src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
                     alt="" 
@@ -46,8 +42,7 @@
             </figure>
         </li>
         <li>
-            <figure>
-                <img src="golden-film-frame.png" alt="" class="film-frame">
+            <figure class="film-frame">
                 <img 
                     src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
                     alt="" 
@@ -57,8 +52,7 @@
             </figure>
         </li>
         <li>
-            <figure>
-                <img src="golden-film-frame.png" alt="" class="film-frame">
+            <figure class="film-frame">
                 <img 
                     src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
                     alt="" 
@@ -66,11 +60,10 @@
                 >
                 <figcaption>Programas</figcaption>
             </figure>
-        </li>
+        </li> -->
         @for (category of categories; track $index) {
             <li>
-                <figure>
-                    <img src="golden-film-frame.png" alt="" class="film-frame">
+                <figure class="film-frame">
                     <img src="{{category.imageUrl}}" alt="" class="film-frame-figure">
                     <figcaption>{{category.name}}</figcaption>
                 </figure>
@@ -89,5 +82,103 @@
     </menu>
     <main>
 
-    </main>
+        <section class="films-section">                                                                                                                                                                                                         
+            <figure class="film-card">
+                <img 
+                    src="https://m.media-amazon.com/images/M/MV5BYWEwYjA1ODUtNDFhYy00MjE3LWJmMjgtOTI4MGM2OGJiOTBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">Xena: A princesa guerreira</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6OykWpuU1sOKqtVa2t7Ed-t4Yfmn_hTsnFg&s" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">MacGyver</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://http2.mlstatic.com/D_NQ_NP_951292-MLB46381854543_062021-O-pster-cinema-filme-conan-o-barbaro-arnold-schwarzenegger-1.webp" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">Conan: O bárbaro!</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://images.justwatch.com/poster/200002801/s332/temporada-8" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">Arnold</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://m.media-amazon.com/images/M/MV5BYWEwYjA1ODUtNDFhYy00MjE3LWJmMjgtOTI4MGM2OGJiOTBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">Xena: A princesa guerreira</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6OykWpuU1sOKqtVa2t7Ed-t4Yfmn_hTsnFg&s" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">MacGyver</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://http2.mlstatic.com/D_NQ_NP_951292-MLB46381854543_062021-O-pster-cinema-filme-conan-o-barbaro-arnold-schwarzenegger-1.webp" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">Conan: O bárbaro!</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://images.justwatch.com/poster/200002801/s332/temporada-8" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">Arnold</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://m.media-amazon.com/images/M/MV5BYWEwYjA1ODUtNDFhYy00MjE3LWJmMjgtOTI4MGM2OGJiOTBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">Xena: A princesa guerreira</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6OykWpuU1sOKqtVa2t7Ed-t4Yfmn_hTsnFg&s" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">MacGyver</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://http2.mlstatic.com/D_NQ_NP_951292-MLB46381854543_062021-O-pster-cinema-filme-conan-o-barbaro-arnold-schwarzenegger-1.webp" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">Conan: O bárbaro!</figcaption>
+            </figure>
+            <figure class="film-card">
+                <img 
+                    src="https://images.justwatch.com/poster/200002801/s332/temporada-8" 
+                    alt=""
+                    class="film-card-poster"
+                >
+                <figcaption class="film-card-title">Arnold</figcaption>
+            </figure>
+        </section>
+    </main> 
 </div>
