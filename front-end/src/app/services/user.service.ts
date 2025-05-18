@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { GenericResponse } from '../models/generic-response';
 import { Observable } from 'rxjs';
 import { Login } from '../models/login';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +26,27 @@ export class UserService {
 
   removeToken() {
     localStorage.removeItem("token");
+  }
+
+  getToken() {
+    return localStorage.getItem("token");
+  }
+
+  jwtDecode() {
+    let token = this.getToken();
+
+    if (token)
+      return jwtDecode<JwtPayload>(token);
+
+    else return "";
+  }
+
+  hasRole(role: string) {
+    let user = this.jwtDecode() as User;
+
+    if (user.roles.includes(role))
+      return true;
+
+    else return false;
   }
 }
