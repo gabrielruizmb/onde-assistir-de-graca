@@ -1,0 +1,52 @@
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { GenericResponse } from '../models/generic-response';
+import { Observable } from 'rxjs';
+import { Login } from '../models/login';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
+import { User } from '../models/user';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  http = inject(HttpClient);
+  url = "http://localhost:8080/api/users/sign-in";
+
+  constructor() { }
+
+  signIn(login: Login): Observable<GenericResponse> {
+    return this.http.post<GenericResponse>(this.url, login);
+  }
+
+  setToken(token: string) {
+    localStorage.setItem("token", token);
+  }
+
+  removeToken() {
+    localStorage.removeItem("token");
+  }
+
+  getToken() {
+    return localStorage.getItem("token");
+  }
+
+  jwtDecode() {
+    let token = this.getToken();
+
+    if (token)
+      return jwtDecode<JwtPayload>(token);
+
+    else return "";
+  }
+
+  hasRole(role: string) {
+    let user = this.jwtDecode() as User;
+
+    if (user.roles.includes(role))
+      return true;
+
+    else return false;
+  }
+}

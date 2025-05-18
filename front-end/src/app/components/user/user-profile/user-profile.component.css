@@ -1,0 +1,24 @@
+#user-profile-body {
+    position: fixed;
+    top: 116px;
+
+    display: flex;
+    justify-content: center;
+
+    width: 100vw;
+
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    
+    background-color: var(--primary-orange);
+}
+
+#user-profile-info {
+    width: 300px;
+    height: 500px;
+}
+
+#user-profile-add-user {
+    width: 300px;
+    height: 500px;
+}

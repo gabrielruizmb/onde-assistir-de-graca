@@ -1,0 +1,36 @@
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    /* background-color: var(--primary-orange); */
+    background-image: url('/film-background.jpg');
+
+    font-family: 'Poppins';
+}
+
+#sign-in-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    height: 500px;
+    max-width: 300px;
+}
+
+#sign-in-card p {
+    text-align: center;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+span {
+    font-weight: bold;
+}

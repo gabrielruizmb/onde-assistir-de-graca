@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.configs.TokenService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/users")
 public class UserController {
     
@@ -30,8 +32,8 @@ public class UserController {
         this.authenticationManager = authenticationManager;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<GenericResponseDTO> login(
+    @PostMapping("/sign-in")
+    public ResponseEntity<GenericResponseDTO> signIn(
         @RequestBody LoginRequestDTO loginRequestDTO
     ) {
         try {
@@ -53,7 +55,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<GenericResponseDTO> signUp(
         @RequestBody UserRegisterDTO userRegisterDTO

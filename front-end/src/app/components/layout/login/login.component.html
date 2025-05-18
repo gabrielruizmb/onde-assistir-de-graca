@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div id="root">
+    <div id="sign-in-card" class="default-card">
+        <a href="/home" class="logo">
+            <img src="popcorn-bucket.png" alt="Ilustração de um balde de pipoca">
+            <img src="logo-title.png" alt="Onde assistir de graça">
+        </a>
+        <h2>Entrar</h2>
+        <p>{{error}}</p>
+        <div class="input">
+            <label for="">E-mail</label>
+            <input [(ngModel)] = "login.email" type="email" class="default-input">
+        </div>
+        <div class="input">
+            <label for="">Senha</label>
+            <input [(ngModel)] = "login.password" type="password" class="default-input">
+        </div>
+        <button (click) = "signIn()" type="submit" class="default-button">Entrar</button>
+        <p>
+            <span>Aviso: </span>esta área destina-se somente aos colaboradores de conteúdo do site!
+        </p>
+        <a href="/home" class = "default-button">Voltar ao site</a>
+    </div>
+</div>

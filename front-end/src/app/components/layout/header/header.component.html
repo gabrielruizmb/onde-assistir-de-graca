@@ -1,5 +1,24 @@
 <header>
-    <div id="header-logo">
-        <h1>Onde assistir<br>de graça</h1>
+    <a href="/home" class="logo">
+        <img src="popcorn-bucket.png" alt="Ilustração de um balde de pipoca">
+        <img src="logo-title.png" alt="Onde assistir de graça">
+    </a>
+    <div id="header-menu">
+    @if(userService.hasRole('ROLE_ADMIN') || userService.hasRole('ROLE_COLLABORATOR')) {
+        <a href="/user-profile" class="header-menu-item">
+            <img 
+                src="user-icon.png" 
+                alt="Ícone de uma pessoa" 
+                title="Meu perfil"
+            >
+        </a>
+    }
+        <a href="/login" class="header-menu-item">
+            <img 
+                src="door.png" 
+                alt="Ícone de porta para entrar/sair" 
+                title="Entrar/Sair"
+            >
+        </a>
     </div>
 </header>
