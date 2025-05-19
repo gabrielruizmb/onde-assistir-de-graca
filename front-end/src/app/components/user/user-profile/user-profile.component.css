@@ -2,23 +2,24 @@
     position: relative;
     top: 116px;
 
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-
     width: 100vw;
     height: 100vh;
-
 
     overflow-y: scroll;
     scroll-behavior: smooth;
     
     /* background-color: var(--primary-orange); */
-
+    
     background-image: url('/film-background.jpg');
     background-position: center;
-
+    
     font-family: 'Poppins';
+}
+
+.user-profile-cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .return-button {
@@ -27,6 +28,7 @@
     align-items: center;
 
     margin-top: 20px;
+    margin-left: 20px;
 
     width: 50px;
     height: 25px;

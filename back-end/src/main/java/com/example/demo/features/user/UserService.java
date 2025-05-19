@@ -43,6 +43,11 @@ public class UserService {
                 "A senha deve conter no mínimo 8 caracteres!"
             );
 
+        if (userRegisterDTO.fullName().isBlank())
+            throw new IllegalArgumentException(
+                "O nome não pode ficar em branco!"
+            );
+
         User user = new User(
             null, 
             userRegisterDTO.email(), 
