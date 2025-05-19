@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Login } from '../models/login';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { User } from '../models/user';
+import { UserRegister } from '../models/user-register';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,9 @@ export class UserService {
 
   signIn(login: Login): Observable<GenericResponse> {
     return this.http.post<GenericResponse>(this.url, login);
+  }
+
+  signUp(userRegister: UserRegister) {
   }
 
   setToken(token: string) {
