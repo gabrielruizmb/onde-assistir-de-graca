@@ -1,20 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Film } from '../models/film';
 import { Observable } from 'rxjs';
-import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class FilmService {
 
   http = inject(HttpClient);
-  apiUrl = 'http://localhost:8080/api/categories';
+  baseUrl = "http://localhost:8080/api/films";
 
   constructor() { }
-  
-  getAll(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.apiUrl);
-  }
 
+  getAll(): Observable<Film[]> {
+    return this.http.get<Film[]>(this.baseUrl);
+  }
 }
