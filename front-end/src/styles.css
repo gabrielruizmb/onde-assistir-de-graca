@@ -131,6 +131,11 @@
     font-style: italic;
 }
 
+.film-channel-box {
+    margin: 30px;
+    text-align: center;
+}
+
 .film-channel-box img{
     width: 80px;
 }
