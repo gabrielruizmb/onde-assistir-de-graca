@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { GenericResponse } from '../models/generic-response';
 import { Observable } from 'rxjs';
@@ -23,15 +23,8 @@ export class UserService {
 
   signUp(userRegister: UserRegister): Observable<GenericResponse> {
 
-    const token = this.getToken();
-
-    const options = {
-      headers: {
-        'Authorization': "Bearer " + token
-      }
-    };
-  
-    return this.http.post<GenericResponse>(this.url + "/sign-up", userRegister, options);
+    return this.http.post<GenericResponse>(this.url + "/sign-up", userRegister, 
+      {headers: {'Authorization': 'Bearer ' + this.getToken()}});
   }
 
   setToken(token: string) {
