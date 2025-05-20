@@ -106,24 +106,28 @@
                 >
                 <figcaption class="film-card-title">Conan: O bárbaro!</figcaption>
             </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://br.web.img3.acsta.net/c_162_216/medias/nmedia/18/36/29/27/19456283.jpg" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Arnold</figcaption>
-            </figure>
-
-            @for (film of films; track $index) {
+            <a href="/film-details" class="default-anchor-style">
                 <figure class="film-card">
                     <img 
-                        src="{{film.posterUrl}}" 
-                        alt="Poster do filme"
+                        src="https://br.web.img3.acsta.net/c_162_216/medias/nmedia/18/36/29/27/19456283.jpg" 
+                        alt=""
                         class="film-card-poster"
                     >
-                    <figcaption class="film-card-title">{{film.title}}</figcaption>
+                    <figcaption class="film-card-title">Arnold</figcaption>
                 </figure>
+            </a>
+
+            @for (film of films; track $index) {
+                <a href="/film-details/{{film.id}}" class="default-anchor-style">
+                    <figure class="film-card">
+                        <img 
+                            src="{{film.posterUrl}}" 
+                            alt="Poster do filme"
+                            class="film-card-poster"
+                        >
+                        <figcaption class="film-card-title">{{film.title}}</figcaption>
+                    </figure>
+                </a>
             }
 
         </section>

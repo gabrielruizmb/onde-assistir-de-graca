@@ -75,6 +75,15 @@
     color: var(--primary-error-color);
 }
 
+.default-anchor-style {
+    color: var(--secondary-dark);
+    text-decoration-line: none;
+}
+
+.default-anchor-style:visited {
+    color: var(--secondary-dark);
+}
+
 @media(max-width: 340px) {
     .logo img:first-child{
         width: 50px;
