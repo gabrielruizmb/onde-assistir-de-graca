@@ -26,7 +26,8 @@
                 <article id="user-profile-add-user" class="default-card user-default-card">
                     <img src="big-new-user-icon.png" alt="Ícone de adicionar novo usuário">
                     <h3>+ Adicionar colaborador</h3>
-                    <p>{{message}}</p>
+                    <p class="error-color-text">{{errorMessage}}</p>
+                    <p class="success-color-text">{{sucessMessage}}</p>
                     <div class="input-box">
                         <label for="name">Nome: </label>
                         <input [(ngModel)] = "newUser.name" type="text" name="" id="name" class="default-input">

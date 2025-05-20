@@ -17,16 +17,17 @@ export class UserProfileComponent {
   currentUser: User = this.userService.getCurrentUser();
   newUser: UserRegister = new UserRegister();
   comparisonPassword!: string;
-  message!: string;
+  errorMessage!: string;
+  sucessMessage!: string;
 
   signUp() {
 
     this.userService.signUp(this.newUser).subscribe({
       next: (response) => {
-        this.message = response.message;
+        this.sucessMessage = "Colaborador cadastrado com sucesso!";
       },
       error: (reponse) => {
-        this.message = reponse.error.message;
+        this.errorMessage = reponse.error.message;
       }
     })
   }

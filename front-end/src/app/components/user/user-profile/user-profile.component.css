@@ -58,10 +58,11 @@
     height: 500px;
 }
 
+#user-profile-add-user p{
+    text-align: center;
+}
+
 .input-box {
     display: flex;
     flex-direction: column;
-}
-
-#user-profile-add-user button span{
 }
