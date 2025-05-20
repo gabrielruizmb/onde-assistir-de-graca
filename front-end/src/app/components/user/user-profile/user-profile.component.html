@@ -1,11 +1,61 @@
 <div id="root">
     <app-header></app-header>
     <main id="user-profile-body">
-        <div id="user-profile-info" class="default-card">
+        <a href="/home" class="default-button return-button">Voltar</a>
+        <section class="user-profile-cards">
+            <article id="user-profile-info" class="default-card user-default-card">
+                <img src="big-person-icon.png" alt="Ícone de uma pessoa/usuário" class="user-profile-info-icon">
+                <h3>Meus dados</h3>
+                <div class="user-data">
+                    <span>Nome: </span>
+                    <p>{{currentUser.name}}</p>
     
-        </div>
-        <div id="user-profile-add-user" class="default-card">
+                    <span>E-mail: </span>
+                    <p>{{currentUser.email}}</p>
     
-        </div>
+                    <span>Cargo: </span>
+                    @if(userService.hasRole('ROLE_ADMIN')) {
+                        <p>Administrador(a)</p>
+                    }
+                    @if(userService.hasRole('ROLE_COLLABORATOR')) {
+                        <p>Colaborador(a)</p>
+                    }
+                </div>
+            </article>
+            @if(userService.hasRole('ROLE_ADMIN')) {
+                <article id="user-profile-add-user" class="default-card user-default-card">
+                    <img src="big-new-user-icon.png" alt="Ícone de adicionar novo usuário">
+                    <h3>+ Adicionar colaborador</h3>
+                    <p class="error-color-text">{{errorMessage}}</p>
+                    <p class="success-color-text">{{sucessMessage}}</p>
+                    <div class="input-box">
+                        <label for="name">Nome: </label>
+                        <input [(ngModel)] = "newUser.fullName" type="text" name="" id="name" class="default-input">
+                    </div>
+                    <div class="input-box">
+                        <label for="email">E-mail: </label>
+                        <input [(ngModel)] = "newUser.email" type="email" name="" id="email" class="default-input">
+                    </div>
+                    <div class="input-box">
+                        <label for="password">Senha: </label>
+                        <input [(ngModel)] = "newUser.password" type="password" name="" id="password" class="default-input">
+                    </div>
+                    <div class="input-box">
+                        <label for="comparison-password">Confirme a senha: </label>
+                        <input [(ngModel)] = "comparisonPassword" type="password" name="" id="comparison-password" class="default-input">
+                    </div>
+                    @if(newUser.password !== comparisonPassword) {
+                        <p>As senhas estão diferentes</p>
+                    }
+                    <button 
+                        type="submit" 
+                        class="default-button" 
+                        (click) = "signUp()"
+                    >
+                        Cadastrar
+                    </button>
+                </article>
+            }
+        </section>
     </main>
 </div>

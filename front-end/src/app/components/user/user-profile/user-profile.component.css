@@ -1,24 +1,68 @@
 #user-profile-body {
-    position: fixed;
+    position: relative;
     top: 116px;
 
-    display: flex;
-    justify-content: center;
-
     width: 100vw;
+    height: 100vh;
 
     overflow-y: scroll;
     scroll-behavior: smooth;
     
-    background-color: var(--primary-orange);
+    /* background-color: var(--primary-orange); */
+    
+    background-image: url('/film-background.jpg');
+    background-position: center;
+    
+    font-family: 'Poppins';
+}
+
+.user-profile-cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.return-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 20px;
+    margin-left: 20px;
+
+    width: 50px;
+    height: 25px;
+}
+
+.user-default-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #user-profile-info {
-    width: 300px;
+    width: 280px;
+    max-width: 300px;
+    height: 400px;
+}
+
+.user-data span{
+    font-weight: bold;
+}
+
+
+#user-profile-add-user {
+    width: 280px;
+    max-width: 300px;
     height: 500px;
 }
 
-#user-profile-add-user {
-    width: 300px;
-    height: 500px;
+#user-profile-add-user p{
+    text-align: center;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
 }

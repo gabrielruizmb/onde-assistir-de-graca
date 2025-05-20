@@ -64,7 +64,7 @@
         @for (category of categories; track $index) {
             <li>
                 <figure class="film-frame">
-                    <img src="{{category.imageUrl}}" alt="" class="film-frame-figure">
+                    <img src="{{category.imageUrl}}" alt="Poster da categoria" class="film-frame-figure">
                     <figcaption>{{category.name}}</figcaption>
                 </figure>
             </li>
@@ -81,7 +81,6 @@
         </li> -->
     </menu>
     <main>
-
         <section class="films-section">                                                                                                                                                                                                         
             <figure class="film-card">
                 <img 
@@ -107,78 +106,30 @@
                 >
                 <figcaption class="film-card-title">Conan: O bárbaro!</figcaption>
             </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://images.justwatch.com/poster/200002801/s332/temporada-8" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Arnold</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://m.media-amazon.com/images/M/MV5BYWEwYjA1ODUtNDFhYy00MjE3LWJmMjgtOTI4MGM2OGJiOTBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Xena: A princesa guerreira</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6OykWpuU1sOKqtVa2t7Ed-t4Yfmn_hTsnFg&s" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">MacGyver</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://http2.mlstatic.com/D_NQ_NP_951292-MLB46381854543_062021-O-pster-cinema-filme-conan-o-barbaro-arnold-schwarzenegger-1.webp" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Conan: O bárbaro!</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://images.justwatch.com/poster/200002801/s332/temporada-8" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Arnold</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://m.media-amazon.com/images/M/MV5BYWEwYjA1ODUtNDFhYy00MjE3LWJmMjgtOTI4MGM2OGJiOTBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Xena: A princesa guerreira</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6OykWpuU1sOKqtVa2t7Ed-t4Yfmn_hTsnFg&s" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">MacGyver</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://http2.mlstatic.com/D_NQ_NP_951292-MLB46381854543_062021-O-pster-cinema-filme-conan-o-barbaro-arnold-schwarzenegger-1.webp" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Conan: O bárbaro!</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://images.justwatch.com/poster/200002801/s332/temporada-8" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Arnold</figcaption>
-            </figure>
+            <a href="/film-details" class="default-anchor-style">
+                <figure class="film-card">
+                    <img 
+                        src="https://br.web.img3.acsta.net/c_162_216/medias/nmedia/18/36/29/27/19456283.jpg" 
+                        alt=""
+                        class="film-card-poster"
+                    >
+                    <figcaption class="film-card-title">Arnold</figcaption>
+                </figure>
+            </a>
+
+            @for (film of films; track $index) {
+                <a href="/film-details/{{film.id}}" class="default-anchor-style">
+                    <figure class="film-card">
+                        <img 
+                            src="{{film.posterUrl}}" 
+                            alt="Poster do filme"
+                            class="film-card-poster"
+                        >
+                        <figcaption class="film-card-title">{{film.title}}</figcaption>
+                    </figure>
+                </a>
+            }
+
         </section>
     </main> 
 </div>

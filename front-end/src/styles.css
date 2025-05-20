@@ -20,6 +20,8 @@
     --primary-orange: rgb(255, 174, 0);
     --secondary-orange: rgb(255, 145, 0);
     --primary-white: white;
+    --primary-sucess-color: green;
+    --primary-error-color: red;
 }
 
 .default-button {
@@ -63,6 +65,23 @@
 
 .logo img:last-child {
     width: 200px;
+}
+
+.success-color-text {
+    color: var(--primary-sucess-color);
+}
+
+.error-color-text {
+    color: var(--primary-error-color);
+}
+
+.default-anchor-style {
+    color: var(--secondary-dark);
+    text-decoration-line: none;
+}
+
+.default-anchor-style:visited {
+    color: var(--secondary-dark);
 }
 
 @media(max-width: 340px) {

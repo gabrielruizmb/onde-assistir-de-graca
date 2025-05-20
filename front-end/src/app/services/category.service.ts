@@ -11,9 +11,10 @@ export class CategoryService {
   http = inject(HttpClient);
   apiUrl = 'http://localhost:8080/api/categories';
 
+  constructor() { }
+  
   getAll(): Observable<Category[]> {
     return this.http.get<Category[]>(this.apiUrl);
   }
 
-  constructor() { }
 }

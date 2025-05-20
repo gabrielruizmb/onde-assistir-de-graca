@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { GenericResponse } from '../models/generic-response';
 import { Observable } from 'rxjs';
 import { Login } from '../models/login';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { User } from '../models/user';
+import { UserRegister } from '../models/user-register';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,18 @@ import { User } from '../models/user';
 export class UserService {
 
   http = inject(HttpClient);
-  url = "http://localhost:8080/api/users/sign-in";
+  url = "http://localhost:8080/api/users";
 
   constructor() { }
 
   signIn(login: Login): Observable<GenericResponse> {
-    return this.http.post<GenericResponse>(this.url, login);
+    return this.http.post<GenericResponse>(this.url + "/sign-in", login);
+  }
+
+  signUp(userRegister: UserRegister): Observable<GenericResponse> {
+
+    return this.http.post<GenericResponse>(this.url + "/sign-up", userRegister, 
+      {headers: {'Authorization': 'Bearer ' + this.getToken()}});
   }
 
   setToken(token: string) {
@@ -48,5 +55,9 @@ export class UserService {
       return true;
 
     else return false;
+  }
+
+  getCurrentUser() {
+    return this.jwtDecode() as User;
   }
 }
