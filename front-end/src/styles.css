@@ -84,6 +84,57 @@
     color: var(--secondary-dark);
 }
 
+.return-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 20px;
+    margin-left: 20px;
+
+    width: 50px;
+    height: 25px;
+}
+
+.film-detail-card {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.film-big-poster {
+    width: 300px;
+
+    border: 5px ridge var(--primary-dark);
+}
+
+.film-detail-card-details {
+    display: flex;
+    flex-direction: column;
+    
+    width: 300px;
+}
+
+.film-detail-card-details-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.film-channels-card-title-box {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 20px;
+}
+
+.film-channels-card-title-box h1>span{
+    font-style: italic;
+}
+
+.film-channel-box img{
+    width: 80px;
+}
+
 @media(max-width: 340px) {
     .logo img:first-child{
         width: 50px;

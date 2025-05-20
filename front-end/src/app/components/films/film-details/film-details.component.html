@@ -1,1 +1,24 @@
-<p>film-details works!</p>
+<app-header></app-header>
+<main>
+    <a href="/home" class="default-button return-button">Voltar</a>
+    <section class="film-details-section">
+        <article class="default-card film-detail-card">
+            <img src="{{film.posterUrl}}" alt="" class="film-big-poster">
+            <div class="film-detail-card-details">
+                <h1 class="film-detail-card-details-item">{{film.title}}</h1>
+                <p class="film-detail-card-details-item">Ano: {{film.year}}</p>
+                <p class="film-detail-card-details-item">{{film.description}}</p>
+            </div>
+        </article>
+        <article class="default-card film-channels-card">
+            <div class="film-channels-card-title-box">
+                <h1>Onde assistir <span>{{film.title}}</span> de graça!</h1>
+            </div>
+            @for(channel of film.channels; track $index) {
+                <a href="{{channel.url}}" target="_blank" class="film-channel-box">
+                    <img src="{{channel.imageUrl}}" alt="Logo do canal" title="{{channel.name}}">
+                </a>
+            }
+        </article>
+    </section>
+</main>
