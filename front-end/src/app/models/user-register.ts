@@ -1,5 +1,5 @@
 export class UserRegister {
-    name!: string;
+    fullName!: string;
     email!: string;
     password!: string;
 }

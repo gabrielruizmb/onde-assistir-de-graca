@@ -25,6 +25,9 @@ export class UserProfileComponent {
     this.userService.signUp(this.newUser).subscribe({
       next: (response) => {
         this.sucessMessage = "Colaborador cadastrado com sucesso!";
+        this.errorMessage = "";
+        this.newUser = new UserRegister();
+        this.comparisonPassword = "";
       },
       error: (reponse) => {
         this.errorMessage = reponse.error.message;
