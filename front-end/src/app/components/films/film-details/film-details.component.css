@@ -2,11 +2,13 @@ main {
     position: relative;
     top: 116px;
 
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw;
+    padding-top: 5px;
+    padding-bottom: 20px;
 
-    overflow-y: scroll;
-    scroll-behavior: smooth;
+    /* overflow-y: scroll;
+    scroll-behavior: smooth; */
 
     background-image: url('/film-background.jpg');
 
