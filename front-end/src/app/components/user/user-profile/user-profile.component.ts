@@ -17,5 +17,18 @@ export class UserProfileComponent {
   currentUser: User = this.userService.getCurrentUser();
   newUser: UserRegister = new UserRegister();
   comparisonPassword!: string;
+  message!: string;
+
+  signUp() {
+
+    this.userService.signUp(this.newUser).subscribe({
+      next: (response) => {
+        this.message = response.message;
+      },
+      error: (reponse) => {
+        this.message = reponse.error.message;
+      }
+    })
+  }
 
 }

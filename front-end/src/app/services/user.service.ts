@@ -13,15 +13,25 @@ import { UserRegister } from '../models/user-register';
 export class UserService {
 
   http = inject(HttpClient);
-  url = "http://localhost:8080/api/users/sign-in";
+  url = "http://localhost:8080/api/users";
 
   constructor() { }
 
   signIn(login: Login): Observable<GenericResponse> {
-    return this.http.post<GenericResponse>(this.url, login);
+    return this.http.post<GenericResponse>(this.url + "/sign-in", login);
   }
 
-  signUp(userRegister: UserRegister) {
+  signUp(userRegister: UserRegister): Observable<GenericResponse> {
+
+    const token = this.getToken();
+
+    const options = {
+      headers: {
+        'Authorization': "Bearer " + token
+      }
+    };
+  
+    return this.http.post<GenericResponse>(this.url + "/sign-up", userRegister, options);
   }
 
   setToken(token: string) {

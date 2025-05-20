@@ -26,6 +26,7 @@
                 <article id="user-profile-add-user" class="default-card user-default-card">
                     <img src="big-new-user-icon.png" alt="Ícone de adicionar novo usuário">
                     <h3>+ Adicionar colaborador</h3>
+                    <p>{{message}}</p>
                     <div class="input-box">
                         <label for="name">Nome: </label>
                         <input [(ngModel)] = "newUser.name" type="text" name="" id="name" class="default-input">
@@ -45,7 +46,13 @@
                     @if(newUser.password !== comparisonPassword) {
                         <p>As senhas estão diferentes</p>
                     }
-                    <button type="submit" class="default-button">Cadastrar</button>
+                    <button 
+                        type="submit" 
+                        class="default-button" 
+                        (click) = "signUp()"
+                    >
+                        Cadastrar
+                    </button>
                 </article>
             }
         </section>
