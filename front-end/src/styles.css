@@ -96,6 +96,32 @@
     height: 25px;
 }
 
+.add-film-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 20px;
+    margin-left: 20px;
+
+    width: 160px;
+    height: 30px;
+
+    background-color: var(--primary-dark);
+    border-radius: 30px;
+
+    border: 2px solid var(--secondary-dark);
+    padding: 10px;
+
+    text-decoration-line: none;
+    color: var(--secondary-orange);
+
+    cursor: pointer;
+
+    font-weight: bold;
+    font-family: 'Poppins';
+}
+
 .film-detail-card {
     display: flex;
     justify-content: space-evenly;
