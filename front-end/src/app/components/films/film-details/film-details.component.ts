@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService } from '../../../services/film.service';
 import { Film } from '../../../models/film';
+import { HeaderComponent } from '../../layout/header/header.component';
 
 @Component({
   selector: 'app-film-details',
-  imports: [],
+  imports: [HeaderComponent],
   templateUrl: './film-details.component.html',
   styleUrl: './film-details.component.css'
 })

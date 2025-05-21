@@ -2,13 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    width: 100vw;
+    
     height: 100vh;
-
-    /* background-color: var(--primary-orange); */
+    width: 100vw;
     background-image: url('/film-background.jpg');
-
+    /* background-color: var(--primary-orange); */
+    
     font-family: 'Poppins';
 }
 

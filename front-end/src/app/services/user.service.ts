@@ -42,19 +42,17 @@ export class UserService {
   jwtDecode() {
     let token = this.getToken();
 
-    if (token)
+    if (token) {
       return jwtDecode<JwtPayload>(token);
-
-    else return "";
+    } else return "";
   }
 
   hasRole(role: string) {
     let user = this.jwtDecode() as User;
 
-    if (user.roles.includes(role))
+    if (user.roles.includes(role)) {
       return true;
-
-    else return false;
+    } else return false;
   }
 
   getCurrentUser() {

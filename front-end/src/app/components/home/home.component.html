@@ -4,8 +4,8 @@
         <li>
             <figure class="film-frame">
                 <img 
-                    src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
-                    alt="" 
+                    src="https://imagem.natelinha.uol.com.br/original/apracaenossa-1500programas-19102017(1)_e61b0a2a2ce1be5b093f417c6e6e8d841f6e12eb.jpeg" 
+                    alt="Imagem da categoria todos(grupo de pessoas)" 
                     class="film-frame-figure"
                 >
                 <figcaption>Todos</figcaption>
@@ -69,20 +69,14 @@
                 </figure>
             </li>
         }
-        <!-- <li>
-            <figure>
-                <img src="golden-film-frame.png" alt="" class="film-frame">
-            </figure>
-        </li>
-        <li>
-            <figure>
-                <img src="golden-film-frame.png" alt="" class="film-frame">
-            </figure>
-        </li> -->
+
     </menu>
     <main>
+        <div>
+            <a href="/film-form" class="add-film-button">+ Adicionar filme</a>
+        </div>
         <section class="films-section">                                                                                                                                                                                                         
-            <figure class="film-card">
+            <!-- <figure class="film-card">
                 <img 
                     src="https://m.media-amazon.com/images/M/MV5BYWEwYjA1ODUtNDFhYy00MjE3LWJmMjgtOTI4MGM2OGJiOTBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
                     alt=""
@@ -115,7 +109,7 @@
                     >
                     <figcaption class="film-card-title">Arnold</figcaption>
                 </figure>
-            </a>
+            </a> -->
 
             @for (film of films; track $index) {
                 <a href="/film-details/{{film.id}}" class="default-anchor-style">
