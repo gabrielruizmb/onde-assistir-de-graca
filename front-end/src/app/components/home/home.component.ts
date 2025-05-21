@@ -4,6 +4,7 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,8 @@ export class HomeComponent {
 
   filmService = inject(FilmService);
   films: Film[] = [];
+
+  userService = inject(UserService);
 
   constructor() {
     this.getAllCategories();
