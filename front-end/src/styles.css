@@ -140,7 +140,7 @@
 .film-big-poster {
     width: 300px;
     height: 433px;
-    
+
     border: 5px ridge var(--primary-dark);
 }
 
@@ -168,12 +168,15 @@
 }
 
 .film-channel-box {
-    margin: 30px;
+    margin: 20px;
     text-align: center;
 }
 
 .film-channel-box img{
     width: 80px;
+    padding: 15px;
+    border-radius: 20px;
+    /* background-color: var(--secondary-dark); */
 }
 
 @media(max-width: 340px) {
