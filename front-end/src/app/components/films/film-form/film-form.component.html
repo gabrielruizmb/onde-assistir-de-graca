@@ -1,1 +1,42 @@
-<p>film-form works!</p>
+<app-header></app-header>
+<main>
+    <a href="/home" class="default-button return-button">Voltar</a>
+    <section class="film-details-section">
+        <article class="default-card film-detail-card">
+            <img src="{{film.posterUrl}}" alt="Poster do filme" class="film-big-poster">
+            <form action="" method="post" class="film-detail-card-details">
+                <h1 class="film-detail-card-details-item">+ Adicionar filme</h1>
+                <div class="default-input-box film-detail-card-details-item">
+                    <label for="title">Título</label>
+                    <input type="text" class="default-input" id="title">
+                </div>
+                <div class="default-input-box film-detail-card-details-item">
+                    <label for="poster">URL do poster</label>
+                    <input 
+                        [(ngModel)] = "film.posterUrl" 
+                        type="text" 
+                        class="default-input" 
+                        name="poster" 
+                        id="poster"
+                    >
+                </div>
+                <div class="default-input-box film-detail-card-details-item">
+                    <label for="year">Ano de lançamento</label>
+                    <input type="number" class="default-input" id="year">
+                </div>
+                <div class="default-input-box film-detail-card-details-item">
+                    <label for="category">Categoria</label>
+                    <select name="" id="category">
+                        @for(category of categoriesList; track $index) {
+                            <option value="{{category.name}}">{{category.name}}</option>
+                        }
+                    </select>
+                </div>
+                <div class="default-input-box film-detail-card-details-item">
+                    <label for="description">Descrição do filme</label>
+                    <textarea name="" id="description" class="default-text-area"></textarea>
+                </div>
+            </form>
+        </article>
+    </section>
+</main>
