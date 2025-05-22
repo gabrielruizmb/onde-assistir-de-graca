@@ -43,9 +43,13 @@
                 <h1>Escolha os canais que passam este filme:</h1>
             </div>
             @for(channel of channelsList; track $index) {
-                <a class="film-channel-box">
+                <!-- <a class="film-channel-box">
                     <img src="{{channel.imageUrl}}" alt="Logo do canal" title="{{channel.name}}">
-                </a>
+                </a> -->
+                <div class="film-channel-box film-channel-selection-box">
+                    <img src="{{channel.imageUrl}}" alt="Logo do canal" title="{{channel.name}}">
+                    <input type="checkbox" class="film-channel-checkbox">
+                </div>
             }
         </section>
     </section>
