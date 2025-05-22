@@ -72,9 +72,11 @@
 
     </menu>
     <main>
-        <div>
-            <a href="/film-form" class="add-film-button">+ Adicionar filme</a>
-        </div>
+        @if(userService.getToken()) {
+            <div>
+                <a href="/film-form" class="add-film-button">+ Adicionar filme</a>
+            </div>
+        }
         <section class="films-section">                                                                                                                                                                                                         
             <!-- <figure class="film-card">
                 <img 

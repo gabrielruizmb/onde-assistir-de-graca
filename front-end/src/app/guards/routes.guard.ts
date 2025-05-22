@@ -14,5 +14,12 @@ export const routesGuard: CanActivateFn = (route, state) => {
     }
   }
 
+  if (state.url == '/film-form') {
+    if (!userService.getToken()) {
+      myRouter.navigate(['/login']);
+      return false;
+    }
+  }
+
   return true;
 };

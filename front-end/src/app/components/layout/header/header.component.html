@@ -4,7 +4,7 @@
         <img src="logo-title.png" alt="Onde assistir de graça">
     </a>
     <div id="header-menu">
-    @if(userService.hasRole('ROLE_ADMIN') || userService.hasRole('ROLE_COLLABORATOR')) {
+    @if(userService.getToken()) {
         <a href="/user-profile" class="header-menu-item">
             <img 
                 src="person-icon.png" 
