@@ -48,6 +48,17 @@ export class HomeComponent {
     })
   }
 
+  getAllFromCategory(id: string) {
+    this.filmService.getAllFromCategory(id).subscribe({
+      next: (returnedFilms) => {
+        this.films = returnedFilms;
+      },
+      error: (error) => {
+        console.log("Erro ao obter filmes por categoria.");
+      }
+    })
+  }
+
   goToFilmDetails() {
     
   }

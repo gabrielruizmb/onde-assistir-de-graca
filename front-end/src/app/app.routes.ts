@@ -11,6 +11,6 @@ export const routes: Routes = [
     {path: "", redirectTo: "home", pathMatch: 'full'},
     {path: "home", component: HomeComponent},
     {path: "film-details/:id", component: FilmDetailsComponent},
-    {path: "film-form", component: FilmFormComponent, canActivate: [routesGuard]},
+    {path: "film-form/:action/:id", component: FilmFormComponent, canActivate: [routesGuard]},
     {path: "user-profile", component: UserProfileComponent, canActivate: [routesGuard]}
 ];

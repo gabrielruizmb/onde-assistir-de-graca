@@ -38,10 +38,19 @@
     font-weight: bold;
 }
 
+.default-input-box {
+    display: flex;
+    flex-direction: column;
+}
+
 .default-input {
     border-radius: 30px;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.default-text-area {
+    height: 150px;
 }
 
 .default-card {
@@ -130,6 +139,7 @@
 
 .film-big-poster {
     width: 300px;
+    height: 433px;
 
     border: 5px ridge var(--primary-dark);
 }
@@ -158,12 +168,14 @@
 }
 
 .film-channel-box {
-    margin: 30px;
-    text-align: center;
+    margin: 20px;
 }
 
 .film-channel-box img{
     width: 80px;
+    padding: 15px;
+    border-radius: 20px;
+    /* background-color: var(--secondary-dark); */
 }
 
 @media(max-width: 340px) {
