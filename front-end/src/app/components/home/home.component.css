@@ -89,6 +89,28 @@ main {
     min-height: 720px;
 }
 
+.home-welcome-card-box {
+    display: flex;
+    justify-content: center;
+}
+
+.home-welcome-card {
+    display: flex;
+    justify-content: center;
+    
+    margin: 20px;
+
+    border-radius: 30px;
+    border: 2px solid var(--secondary-dark);
+
+    color: var(--primary-orange);
+    background-color: var(--primary-dark);
+}
+
+.home-welcome-card img {
+    width: 180px;
+}
+
 .films-section {
     margin-top: 30px;
     margin-bottom: 30px;

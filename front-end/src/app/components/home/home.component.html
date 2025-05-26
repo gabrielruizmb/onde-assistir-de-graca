@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div id="home-content">
     <menu id="categories-menu">
-        <li>
+        <li (click) = "getAllFilms()">
             <figure class="film-frame">
                 <img 
                     src="https://imagem.natelinha.uol.com.br/original/apracaenossa-1500programas-19102017(1)_e61b0a2a2ce1be5b093f417c6e6e8d841f6e12eb.jpeg" 
@@ -62,7 +62,7 @@
             </figure>
         </li> -->
         @for (category of categories; track $index) {
-            <li>
+            <li (click) = "getAllFromCategory(category.id)">
                 <figure class="film-frame">
                     <img src="{{category.imageUrl}}" alt="Poster da categoria" class="film-frame-figure">
                     <figcaption>{{category.name}}</figcaption>
@@ -72,6 +72,11 @@
 
     </menu>
     <main>
+        <!-- <section class="home-welcome-card-box">
+            <div class="home-welcome-card">
+                <img src="faca-cada-momento-valer-a-cena.png" alt="Faça cada momento valer a cena!">
+            </div>
+        </section> -->
         @if(userService.getToken()) {
             <div>
                 <a href="/film-form/post/new" class="add-film-button">+ Adicionar filme</a>
