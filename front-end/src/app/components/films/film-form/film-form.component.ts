@@ -48,7 +48,22 @@ export class FilmFormComponent {
     })
   }
 
-  changeMovieChannels(channel: Channel) {
-    this.film.channels.push(channel);
+  changeMovieChannels(choicedChannel: Channel) {
+
+    let selectedChannel = document.getElementById(choicedChannel.id);
+
+    if (selectedChannel != null) {      
+
+      if (selectedChannel.style.backgroundColor == "rgb(20, 19, 19)") {
+        this.film.channels.push(choicedChannel);
+        selectedChannel.style.backgroundColor = "rgb(8, 8, 8)";
+      } else {
+        this.film.channels = this.film.channels.filter(channel => channel.id != choicedChannel.id)
+        selectedChannel.style.backgroundColor = "rgb(20, 19, 19)";
+      }
+
+      console.log(this.film.channels);
+    }
+
   }
 }

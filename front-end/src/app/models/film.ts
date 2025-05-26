@@ -8,5 +8,5 @@ export class Film {
     posterUrl!: string;
     description!: string;
     category!: Category;
-    channels!: Channel[];
+    channels: Channel[] = [];
 }

@@ -36,18 +36,6 @@
                     <label for="description">Descrição do filme</label>
                     <textarea name="" id="description" class="default-text-area"></textarea>
                 </div>
-                <div class="default-input-box">
-                    <h1>Este filme passa no: </h1>
-                    @for(channel of film.channels; track $index) {
-                        <a class="film-channel-box">
-                            <img 
-                                src="{{channel.imageUrl}}" 
-                                alt="Logo do canal {{channel.name}}"
-                                title="{{channel.name}}"
-                            >
-                        </a>
-                    }
-                </div>
             </form>
         </article>
         <section class="default-card film-channels-card">
@@ -57,6 +45,7 @@
             @for(channel of channelsList; track $index) {
                 <a class="film-channel-box">
                     <img
+                        id="{{channel.id}}"
                         (click)="changeMovieChannels(channel)"
                         src="{{channel.imageUrl}}" 
                         alt="Logo do canal" 
