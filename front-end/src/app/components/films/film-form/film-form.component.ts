@@ -47,4 +47,8 @@ export class FilmFormComponent {
       }
     })
   }
+
+  changeMovieChannels(channel: Channel) {
+    this.film.channels.push(channel);
+  }
 }
