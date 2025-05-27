@@ -17,6 +17,9 @@ import { FilmService } from '../../../services/film.service';
 export class FilmFormComponent {
 
   film: Film = new Film();
+  titleMessage!: string;
+  errorMessage!: string;
+  successMessage!: string;
 
   filmService = inject(FilmService);
   categoryService = inject(CategoryService);
@@ -83,9 +86,15 @@ export class FilmFormComponent {
     this.filmService.postFilm(this.film).subscribe({
       next: (response) => {
         console.log(response);
+        this.titleMessage = "";
+        this.successMessage = "Filme postado!";
+        this.film = new Film();
       },
       error: (response) => {
         console.log(response);
+        this.successMessage = "";
+        this.titleMessage = response.error.title;
+        this.errorMessage = response.error.channels;
       }
     })
   }

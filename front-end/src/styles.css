@@ -156,6 +156,10 @@
     margin-bottom: 10px;
 }
 
+.post-film-details-card {
+    display: flex;
+}
+
 .film-channels-card-title-box {
     display: flex;
     justify-content: center;
@@ -179,9 +183,14 @@
 
 .post-film-button-box {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     margin-top: 20px;
+}
+
+.post-film-button-box p{
+    margin-bottom: 15px;
 }
 
 @media(max-width: 340px) {

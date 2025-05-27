@@ -7,6 +7,7 @@
             <form action="" method="post" class="film-detail-card-details">
                 <h1 class="film-detail-card-details-item">+ Adicionar filme</h1>
                 <div class="default-input-box film-detail-card-details-item">
+                    <p class="error-color-text">{{titleMessage}}</p>
                     <label for="title">Título</label>
                     <input 
                         [(ngModel)]="film.title" 
@@ -74,6 +75,8 @@
                 }
             </div>
             <div class="post-film-button-box">
+                <p class="error-color-text">{{errorMessage}}</p>
+                <p class="success-color-text">{{successMessage}}</p>
                 <button 
                     (click) = "postFilm()"
                     type="submit"
