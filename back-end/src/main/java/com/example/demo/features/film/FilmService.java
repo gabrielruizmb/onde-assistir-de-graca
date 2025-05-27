@@ -26,7 +26,11 @@ public class FilmService {
 
     public ResponseEntity<HashMap<String, String>> create(FilmDTO filmDTO) {
 
-        if (filmDTO.title().isBlank() || filmDTO.title().length() > 50) {
+        if (
+            filmDTO.title().isBlank() || 
+            filmDTO.title().length() > 50 || 
+            filmDTO.channels().isEmpty()) {
+                
             HashMap<String, String> response = new HashMap<>();
 
             if (filmDTO.title().isBlank())
@@ -36,13 +40,16 @@ public class FilmService {
                 response
                  .put("title", "O título pode ter no máx. 50 caracteres");
 
-            if (filmDTO.channels().isEmpty())
+            if (filmDTO.channels().isEmpty()) 
                 response
                  .put("channels", "O filme deve passar em ao menos 1 canal");
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                                   .body(response);
         }
+        
+
+        
 
         try {
             filmRepository.save(filmDTO.convertToEntity());
