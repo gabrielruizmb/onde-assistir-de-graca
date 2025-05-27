@@ -6,6 +6,7 @@ import { Category } from '../../../models/category';
 import { FormsModule } from '@angular/forms';
 import { ChannelService } from '../../../services/channel.service';
 import { Channel } from '../../../models/channel';
+import { FilmService } from '../../../services/film.service';
 
 @Component({
   selector: 'app-film-form',
@@ -16,8 +17,11 @@ import { Channel } from '../../../models/channel';
 export class FilmFormComponent {
 
   film: Film = new Film();
+
+  filmService = inject(FilmService);
   categoryService = inject(CategoryService);
   channelService = inject(ChannelService);
+
   categoriesList: Category[] = [];
   channelsList: Channel[] = [];
 
@@ -58,12 +62,26 @@ export class FilmFormComponent {
         this.film.channels.push(choicedChannel);
         selectedChannel.style.backgroundColor = "rgb(8, 8, 8)";
       } else {
-        this.film.channels = this.film.channels.filter(channel => channel.id != choicedChannel.id)
+        this.film.channels = this.film.channels
+          .filter(channel => channel.id != choicedChannel.id);
+
         selectedChannel.style.backgroundColor = "rgb(20, 19, 19)";
       }
 
       console.log(this.film.channels);
     }
 
+  }
+  
+  postFilm() {
+    
+    this.filmService.postFilm(this.film).subscribe({
+      next: (response) => {
+        console.log(response.message);
+      },
+      error: (response) => {
+        console.log(response);
+      }
+    })
   }
 }

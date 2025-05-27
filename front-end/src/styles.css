@@ -177,6 +177,13 @@
     border-radius: 20px;
 }
 
+.post-film-button-box {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 20px;
+}
+
 @media(max-width: 340px) {
     .logo img:first-child{
         width: 50px;

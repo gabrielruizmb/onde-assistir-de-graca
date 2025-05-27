@@ -42,17 +42,28 @@
             <div class="film-channels-card-title-box">
                 <h1>Escolha os canais que passam este filme:</h1>
             </div>
-            @for(channel of channelsList; track $index) {
-                <a class="film-channel-box">
-                    <img
-                        id="{{channel.id}}"
-                        (click)="changeMovieChannels(channel)"
-                        src="{{channel.imageUrl}}" 
-                        alt="Logo do canal" 
-                        title="{{channel.name}}"
-                    >
-                </a>
-            }
+            <div>
+                @for(channel of channelsList; track $index) {
+                    <a class="film-channel-box">
+                        <img
+                            id="{{channel.id}}"
+                            (click)="changeMovieChannels(channel)"
+                            src="{{channel.imageUrl}}" 
+                            alt="Logo do canal" 
+                            title="{{channel.name}}"
+                        >
+                    </a>
+                }
+            </div>
+            <div class="post-film-button-box">
+                <button 
+                    (click) = "postFilm()"
+                    type="submit"
+                    class="default-button"
+                >
+                    Postar filme
+                </button>
+            </div>
         </section>
     </section>
 </main>
