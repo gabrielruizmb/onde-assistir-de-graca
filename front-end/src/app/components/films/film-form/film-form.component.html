@@ -8,7 +8,13 @@
                 <h1 class="film-detail-card-details-item">+ Adicionar filme</h1>
                 <div class="default-input-box film-detail-card-details-item">
                     <label for="title">Título</label>
-                    <input type="text" class="default-input" id="title">
+                    <input 
+                        [(ngModel)]="film.title" 
+                        type="text" 
+                        class="default-input" 
+                        name="title"
+                        id="title"
+                    >
                 </div>
                 <div class="default-input-box film-detail-card-details-item">
                     <label for="poster">URL do poster</label>
@@ -22,19 +28,33 @@
                 </div>
                 <div class="default-input-box film-detail-card-details-item">
                     <label for="year">Ano de lançamento</label>
-                    <input type="number" class="default-input" id="year">
+                    <input 
+                        [(ngModel)]="film.year"
+                        type="number" 
+                        class="default-input" 
+                        name="year"
+                        id="year">
                 </div>
                 <div class="default-input-box film-detail-card-details-item">
                     <label for="category">Categoria</label>
-                    <select name="" id="category">
+                    <select [(ngModel)]="film.category" name="category" id="category">
                         @for(category of categoriesList; track $index) {
-                            <option value="{{category.name}}">{{category.name}}</option>
+                            <option 
+                                value="{{category}}"
+                            >
+                                {{category.name}}
+                            </option>
                         }
                     </select>
                 </div>
                 <div class="default-input-box film-detail-card-details-item">
                     <label for="description">Descrição do filme</label>
-                    <textarea name="" id="description" class="default-text-area"></textarea>
+                    <textarea 
+                        [(ngModel)]="film.description"
+                        name="description" 
+                        id="description" 
+                        class="default-text-area"
+                    ></textarea>
                 </div>
             </form>
         </article>

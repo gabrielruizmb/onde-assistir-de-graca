@@ -74,7 +74,8 @@ export class FilmFormComponent {
   }
   
   postFilm() {
-    
+    console.log(this.film);
+
     this.filmService.postFilm(this.film).subscribe({
       next: (response) => {
         console.log(response.message);

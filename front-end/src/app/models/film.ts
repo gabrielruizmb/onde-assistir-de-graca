@@ -4,7 +4,7 @@ import { Channel } from "./channel";
 export class Film {
     id!: string;
     title!: string;
-    year!: string;
+    year!: number;
     posterUrl!: string;
     description!: string;
     category!: Category;
