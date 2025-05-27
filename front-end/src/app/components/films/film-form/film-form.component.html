@@ -37,9 +37,9 @@
                 </div>
                 <div class="default-input-box film-detail-card-details-item">
                     <label for="category">Categoria</label>
-                    <select name="category" id="category">
+                    <select [(ngModel)]="film.category" name="category">
                         @for(category of categoriesList; track $index) {
-                            <option (click)="changeFilmCategory(category)">
+                            <option [ngValue]="category">
                                 {{category.name}}
                             </option>
                         }
