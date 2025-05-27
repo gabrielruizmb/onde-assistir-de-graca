@@ -58,7 +58,7 @@ export class FilmFormComponent {
 
     if (selectedChannel != null) {      
 
-      if (selectedChannel.style.backgroundColor == "rgb(20, 19, 19)") {
+      if (!this.film.channels.includes(choicedChannel)) {
         this.film.channels.push(choicedChannel);
         selectedChannel.style.backgroundColor = "rgb(8, 8, 8)";
       } else {
