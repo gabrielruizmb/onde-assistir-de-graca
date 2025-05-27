@@ -52,7 +52,11 @@ export class FilmFormComponent {
     })
   }
 
-  changeMovieChannels(choicedChannel: Channel) {
+  changeFilmCategory(category: Category) {
+    this.film.category = category;
+  }
+
+  changeFilmChannels(choicedChannel: Channel) {
 
     let selectedChannel = document.getElementById(choicedChannel.id);
 
@@ -78,7 +82,7 @@ export class FilmFormComponent {
 
     this.filmService.postFilm(this.film).subscribe({
       next: (response) => {
-        console.log(response.message);
+        console.log(response);
       },
       error: (response) => {
         console.log(response);

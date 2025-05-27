@@ -29,8 +29,8 @@ export class FilmService {
     return this.http.get<Film>(this.baseUrl + '/' + id);
   }
 
-  postFilm(film: Film): Observable<GenericResponse> {
-    return this.http.post<GenericResponse>(this.baseUrl, film, 
+  postFilm(film: Film): Observable<any> {
+    return this.http.post<any>(this.baseUrl, film, 
       {headers: {'Authorization': 'Bearer ' + this.userService.getToken()}});
   }
 }

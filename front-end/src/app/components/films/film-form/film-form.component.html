@@ -37,11 +37,9 @@
                 </div>
                 <div class="default-input-box film-detail-card-details-item">
                     <label for="category">Categoria</label>
-                    <select [(ngModel)]="film.category" name="category" id="category">
+                    <select name="category" id="category">
                         @for(category of categoriesList; track $index) {
-                            <option 
-                                value="{{category}}"
-                            >
+                            <option (click)="changeFilmCategory(category)">
                                 {{category.name}}
                             </option>
                         }
@@ -67,7 +65,7 @@
                     <a class="film-channel-box">
                         <img
                             id="{{channel.id}}"
-                            (click)="changeMovieChannels(channel)"
+                            (click)="changeFilmChannels(channel)"
                             src="{{channel.imageUrl}}" 
                             alt="Logo do canal" 
                             title="{{channel.name}}"
