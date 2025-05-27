@@ -29,8 +29,8 @@ export class UserProfileComponent {
         this.newUser = new UserRegister();
         this.comparisonPassword = "";
       },
-      error: (reponse) => {
-        this.errorMessage = reponse.error.message;
+      error: (response) => {
+        this.errorMessage = response.error.message;
       }
     })
   }
