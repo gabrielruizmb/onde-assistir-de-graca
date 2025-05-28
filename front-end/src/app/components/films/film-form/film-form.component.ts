@@ -87,6 +87,7 @@ export class FilmFormComponent {
       next: (response) => {
         console.log(response);
         this.titleMessage = "";
+        this.errorMessage = "";
         this.successMessage = "Filme postado!";
         this.film = new Film();
       },
