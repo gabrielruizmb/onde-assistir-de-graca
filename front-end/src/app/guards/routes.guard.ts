@@ -7,6 +7,7 @@ export const routesGuard: CanActivateFn = (route, state) => {
   let userService = inject(UserService);
   let myRouter = inject(Router);
 
+
   if (state.url == '/user-profile') {
     if (!userService.getToken()) {
       myRouter.navigate(['/login']);
@@ -14,12 +15,29 @@ export const routesGuard: CanActivateFn = (route, state) => {
     }
   }
 
-  if (state.url == '/film-form') {
+  if (state.url == '/film-form/post/new') {
+    
     if (!userService.getToken()) {
       myRouter.navigate(['/login']);
       return false;
+    } 
+
+    let payload = userService.getTokenPayload();
+    
+    if (payload.exp) {
+      const expirationDate = new Date(payload.exp * 1000);
+      const now = new Date();
+      
+      console.log(now);
+      console.log(expirationDate);
+
+      if (now > expirationDate) {
+        myRouter.navigate(['/login']);
+        return false;
+      }
     }
+  
   }
 
   return true;
-};
+}
