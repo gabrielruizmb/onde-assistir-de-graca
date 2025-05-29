@@ -142,3 +142,11 @@ main {
     font-weight: bold;
     text-align: center;
 }
+
+.film-card-options {
+    display: flex;
+}
+
+.film-card-options img {
+    margin: 5px;
+}
