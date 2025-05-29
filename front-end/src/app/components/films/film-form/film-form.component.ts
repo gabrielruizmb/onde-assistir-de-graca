@@ -33,9 +33,16 @@ export class FilmFormComponent {
   categoriesList: Category[] = [];
   channelsList: Channel[] = [];
 
+  action = this.currentRoute.snapshot.paramMap.get('action');
+  
+
   constructor() {
     this.getAllCategories();
     this.getAllChannels();
+
+    if (this.action == "put" || this.action == "delete") {
+      
+    }
   }
 
   getAllCategories() {
@@ -87,9 +94,7 @@ export class FilmFormComponent {
   
   manipulateFilm() {
 
-    let action = this.currentRoute.snapshot.paramMap.get('action');
-
-    if (action == "post") {
+    if (this.action == "post") {
       
       this.film.createdBy = this.userService.getCurrentUser().id;
 

@@ -26,10 +26,6 @@ export class HomeComponent {
 
   constructor() {
 
-    if (this.currentUser.roles.includes("ROLE_ADMIN")) {
-      console.log("Admin");
-    }
-
     this.getAllCategories();
     this.getAllFilms();
   }

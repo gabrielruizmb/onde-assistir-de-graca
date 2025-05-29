@@ -128,11 +128,17 @@
                         >
                         <figcaption class="film-card-title">{{film.title}}</figcaption>
                     </a>
-                    @if (currentUser.roles.includes("ROLE_ADMIN") || film.createdBy == currentUser.id) {
-                        <div class="film-card-options">
-                            <img src="pencil.png" alt="Ícone de um lápis.">
-                            <img src="trash.png" alt="Ícone de uma lixeira.">
-                        </div>
+                    @if (userService.getToken()) {
+                        @if (currentUser.roles.includes("ROLE_ADMIN") || film.createdBy == currentUser.id) {
+                            <div class="film-card-options">
+                                <a href="/film-form/put/{{film.id}}">
+                                    <img src="pencil.png" alt="Ícone de um lápis.">
+                                </a>
+                                <a href="/film-form/delete/{{film.id}}">
+                                    <img src="trash.png" alt="Ícone de uma lixeira.">
+                                </a>
+                            </div>
+                        }
                     }
                 </figure>
             }
