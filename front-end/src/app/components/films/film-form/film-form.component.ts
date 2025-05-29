@@ -8,6 +8,7 @@ import { ChannelService } from '../../../services/channel.service';
 import { Channel } from '../../../models/channel';
 import { FilmService } from '../../../services/film.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-film-form',
@@ -27,6 +28,7 @@ export class FilmFormComponent {
   filmService = inject(FilmService);
   categoryService = inject(CategoryService);
   channelService = inject(ChannelService);
+  userService = inject(UserService);
 
   categoriesList: Category[] = [];
   channelsList: Channel[] = [];
@@ -89,6 +91,8 @@ export class FilmFormComponent {
 
     if (action == "post") {
       
+      this.film.createdBy = this.userService.getCurrentUser().id;
+
       this.filmService.postFilm(this.film).subscribe({
         next: (response) => {
           console.log(response);
