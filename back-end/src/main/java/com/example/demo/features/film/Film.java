@@ -40,6 +40,8 @@ public class Film {
 
     private String description;
 
+    private UUID createdBy;
+
     @ManyToOne(optional = true)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
@@ -61,6 +63,7 @@ public class Film {
             year,
             posterUrl, 
             description,
+            createdBy,
             category,
             channels
         );

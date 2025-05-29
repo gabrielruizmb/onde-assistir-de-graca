@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ChannelService } from '../../../services/channel.service';
 import { Channel } from '../../../models/channel';
 import { FilmService } from '../../../services/film.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-film-form',
@@ -16,7 +17,12 @@ import { FilmService } from '../../../services/film.service';
 })
 export class FilmFormComponent {
 
+  currentRoute = inject(ActivatedRoute);
+
   film: Film = new Film();
+  titleMessage!: string;
+  errorMessage!: string;
+  successMessage!: string;
 
   filmService = inject(FilmService);
   categoryService = inject(CategoryService);
@@ -77,16 +83,29 @@ export class FilmFormComponent {
 
   }
   
-  postFilm() {
-    console.log(this.film);
+  manipulateFilm() {
 
-    this.filmService.postFilm(this.film).subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (response) => {
-        console.log(response);
-      }
-    })
+    let action = this.currentRoute.snapshot.paramMap.get('action');
+
+    if (action == "post") {
+      
+      this.filmService.postFilm(this.film).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.titleMessage = "";
+          this.errorMessage = "";
+          this.successMessage = "Filme postado!";
+          this.film = new Film();
+        },
+        error: (response) => {
+          console.log(response);
+          this.successMessage = "";
+          this.titleMessage = response.error.title;
+          this.errorMessage = response.error.channels;
+        }
+      });
+    
+    }
+
   }
 }

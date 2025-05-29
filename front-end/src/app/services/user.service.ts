@@ -58,4 +58,8 @@ export class UserService {
   getCurrentUser() {
     return this.jwtDecode() as User;
   }
+
+  getTokenPayload() {
+    return this.jwtDecode() as JwtPayload;
+  }
 }
