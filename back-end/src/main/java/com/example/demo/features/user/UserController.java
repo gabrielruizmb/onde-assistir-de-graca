@@ -1,11 +1,14 @@
 package com.example.demo.features.user;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,5 +72,11 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                                  .body(new GenericResponseDTO(exception.getMessage()));
         }
+    }
+
+    @GetMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<List<UserResponseDTO>> getAll() {
+        return userService.getAll();
     }
 }

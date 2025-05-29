@@ -1,5 +1,10 @@
 package com.example.demo.features.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -58,4 +63,17 @@ public class UserService {
 
         userRepository.save(user);
     }
+
+    public ResponseEntity<List<UserResponseDTO>> getAll() {
+
+        List<UserResponseDTO> usersDtoList = new ArrayList<>();
+        List<User> usersList = userRepository.findAll();
+
+        for (User user : usersList) {
+            usersDtoList.add(user.convertToUserResponseDTO());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(usersDtoList);
+    }
+
 }

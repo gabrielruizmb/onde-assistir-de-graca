@@ -12,6 +12,7 @@ public record FilmDTO(
     int year,
     String posterUrl,
     String description,
+    UUID createdBy,
     Category category,
     List<Channel> channels
 ) {
@@ -23,6 +24,7 @@ public record FilmDTO(
             year,
             posterUrl, 
             description,
+            createdBy,
             category,
             channels
         );

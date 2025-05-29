@@ -28,7 +28,7 @@ public class FilmService {
 
         if (
             filmDTO.title().isBlank() || 
-            filmDTO.title().length() > 50 || 
+            filmDTO.title().length() > 50 ||
             filmDTO.channels().isEmpty()) {
                 
             HashMap<String, String> response = new HashMap<>();
@@ -48,9 +48,6 @@ public class FilmService {
                                   .body(response);
         }
         
-
-        
-
         try {
             filmRepository.save(filmDTO.convertToEntity());
             return ResponseEntity.status(HttpStatus.CREATED).body(null);
