@@ -33,4 +33,14 @@ export class FilmService {
     return this.http.post<any>(this.baseUrl, film, 
       {headers: {'Authorization': 'Bearer ' + this.userService.getToken()}});
   }
+
+  putFilm(film: Film, id: string): Observable<any> {
+    return this.http.put<any>(this.baseUrl + '/' +id, film, 
+      {headers: {'Authorization': 'Bearer ' + this.userService.getToken()}});
+  }
+
+  deleteFilm(id: string): Observable<any> {
+    return this.http.delete<any>(this.baseUrl + '/' +id, 
+      {headers: {'Authorization': 'Bearer ' + this.userService.getToken()}});
+  }
 }

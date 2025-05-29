@@ -35,7 +35,7 @@ public class FilmController {
     }
     
     @PutMapping("{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_COLLABORATOR')")
     public ResponseEntity<HashMap<String, String>> put(
         @PathVariable UUID id, @RequestBody FilmDTO filmDTO
     ) {
@@ -53,13 +53,12 @@ public class FilmController {
     }
 
     @GetMapping("{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<FilmDTO> getById(@PathVariable UUID id) {
         return filmService.getById(id);
     }
 
     @DeleteMapping("{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_COLLABORATOR')")
     public ResponseEntity<FilmDTO> deleteById(@PathVariable UUID id) {
         return filmService.deleteById(id);
     }

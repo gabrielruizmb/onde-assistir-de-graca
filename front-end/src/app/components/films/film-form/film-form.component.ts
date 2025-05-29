@@ -129,32 +129,43 @@ export class FilmFormComponent {
   
   postFilm() {
 
-    if (this.action == "post") {
-      
-      this.film.createdBy = this.userService.getCurrentUser().id;
+    this.film.createdBy = this.userService.getCurrentUser().id;
 
-      this.filmService.postFilm(this.film).subscribe({
-        next: (response) => {
-          console.log(response);
-          this.titleMessage = "";
-          this.errorMessage = "";
-          this.successMessage = "Filme postado!";
-          this.film = new Film();
-        },
-        error: (response) => {
-          console.log(response);
-          this.successMessage = "";
-          this.titleMessage = response.error.title;
-          this.errorMessage = response.error.channels;
-        }
-      });
-    
-    }
+    this.filmService.postFilm(this.film).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.titleMessage = "";
+        this.errorMessage = "";
+        this.successMessage = "Filme postado!";
+        this.film = new Film();
+      },
+      error: (response) => {
+        console.log(response);
+        this.successMessage = "";
+        this.titleMessage = response.error.title;
+        this.errorMessage = response.error.channels;
+      }
+    });
 
   }
 
   putFilm() {
 
+    this.filmService.putFilm(this.film, this.film.id).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.titleMessage = "";
+        this.errorMessage = "";
+        this.successMessage = "Filme editado!";
+        this.film = new Film();
+      },
+      error: (response) => {
+        console.log(response);
+        this.successMessage = "";
+        this.titleMessage = response.error.title;
+        this.errorMessage = response.error.channels;
+      }
+    });
   }
 
   deleteFilm() {
