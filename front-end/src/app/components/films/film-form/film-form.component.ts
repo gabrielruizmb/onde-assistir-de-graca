@@ -61,6 +61,12 @@ export class FilmFormComponent {
             ) {
               this.myRouter.navigate(['/login']);
             }
+
+            if (this.action == "put")
+              this.film.channels = [];
+
+            console.log(this.film);
+
           },
           error: (error) => {
             console.log(error);
@@ -105,11 +111,14 @@ export class FilmFormComponent {
 
       if (!this.film.channels.includes(choicedChannel)) {
         this.film.channels.push(choicedChannel);
+
+        // Pinta o fundo dos canais com uma cor de contraste.
         selectedChannel.style.backgroundColor = "rgb(8, 8, 8)";
       } else {
         this.film.channels = this.film.channels
           .filter(channel => channel.id != choicedChannel.id);
 
+        // Retira a cor de fundo com contraste.
         selectedChannel.style.backgroundColor = "rgb(20, 19, 19)";
       }
 
@@ -118,7 +127,7 @@ export class FilmFormComponent {
 
   }
   
-  manipulateFilm() {
+  postFilm() {
 
     if (this.action == "post") {
       
@@ -141,6 +150,14 @@ export class FilmFormComponent {
       });
     
     }
+
+  }
+
+  putFilm() {
+
+  }
+
+  deleteFilm() {
 
   }
 }

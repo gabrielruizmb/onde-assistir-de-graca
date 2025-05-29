@@ -84,6 +84,10 @@
     color: var(--primary-error-color);
 }
 
+.danger-button {
+    background-color: var(--primary-error-color);
+}
+
 .default-anchor-style {
     color: var(--secondary-dark);
     text-decoration-line: none;
