@@ -170,5 +170,15 @@ export class FilmFormComponent {
 
   deleteFilm() {
 
+    this.filmService.deleteFilm(this.film.id).subscribe({
+      next: (response) => {
+        this.film = new Film();
+        this.successMessage = "Filme excluído!";
+      },
+      error: (response) => {
+        this.errorMessage = "Este filme já foi excluído!";
+      }
+
+    })
   }
 }
