@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ChannelService } from '../../../services/channel.service';
 import { Channel } from '../../../models/channel';
 import { FilmService } from '../../../services/film.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -29,6 +29,7 @@ export class FilmFormComponent {
   categoryService = inject(CategoryService);
   channelService = inject(ChannelService);
   userService = inject(UserService);
+  myRouter = inject(Router);
 
   categoriesList: Category[] = [];
   channelsList: Channel[] = [];
@@ -40,9 +41,11 @@ export class FilmFormComponent {
     this.getAllCategories();
     this.getAllChannels();
 
-    if (this.action == "put" || this.action == "delete") {
-      
-    }
+    // if (this.action == "put" || this.action == "delete") {
+    //   if (!this.userService.getToken()) {
+    //     this.myRouter.navigate(['/login']);
+    //   }
+    // }
   }
 
   getAllCategories() {
