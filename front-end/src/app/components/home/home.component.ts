@@ -5,6 +5,7 @@ import { Category } from '../../models/category';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
 import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { UserService } from '../../services/user.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
   categoryService = inject(CategoryService);
   categories: Category[] = [];
 
@@ -20,8 +22,14 @@ export class HomeComponent {
   films: Film[] = [];
 
   userService = inject(UserService);
+  currentUser: User = this.userService.getCurrentUser();
 
   constructor() {
+
+    if (this.currentUser.roles.includes("ROLE_ADMIN")) {
+      console.log("Admin");
+    }
+
     this.getAllCategories();
     this.getAllFilms();
   }
@@ -59,7 +67,4 @@ export class HomeComponent {
     })
   }
 
-  goToFilmDetails() {
-    
-  }
 }

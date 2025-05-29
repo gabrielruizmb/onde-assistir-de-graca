@@ -119,20 +119,22 @@
             </a> -->
 
             @for (film of films; track $index) {
-                <a href="/film-details/{{film.id}}" class="default-anchor-style">
-                    <figure class="film-card">
+                <figure class="film-card">
+                    <a href="/film-details/{{film.id}}" class="default-anchor-style">
                         <img 
                             src="{{film.posterUrl}}" 
                             alt="Poster do filme"
                             class="film-card-poster"
                         >
                         <figcaption class="film-card-title">{{film.title}}</figcaption>
+                    </a>
+                    @if (currentUser.roles.includes("ROLE_ADMIN") || film.createdBy == currentUser.id) {
                         <div class="film-card-options">
                             <img src="pencil.png" alt="Ícone de um lápis.">
                             <img src="trash.png" alt="Ícone de uma lixeira.">
                         </div>
-                    </figure>
-                </a>
+                    }
+                </figure>
             }
         </section>
     </main> 
