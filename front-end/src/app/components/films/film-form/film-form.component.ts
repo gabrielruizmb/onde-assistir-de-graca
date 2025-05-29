@@ -9,6 +9,7 @@ import { Channel } from '../../../models/channel';
 import { FilmService } from '../../../services/film.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-film-form',
@@ -19,8 +20,11 @@ import { UserService } from '../../../services/user.service';
 export class FilmFormComponent {
 
   currentRoute = inject(ActivatedRoute);
+  action = this.currentRoute.snapshot.paramMap.get('action');
+  filmId = this.currentRoute.snapshot.paramMap.get('id');
 
   film: Film = new Film();
+
   titleMessage!: string;
   errorMessage!: string;
   successMessage!: string;
@@ -30,22 +34,41 @@ export class FilmFormComponent {
   channelService = inject(ChannelService);
   userService = inject(UserService);
   myRouter = inject(Router);
-
+  
   categoriesList: Category[] = [];
   channelsList: Channel[] = [];
-
-  action = this.currentRoute.snapshot.paramMap.get('action');
   
-
+  currentUser!: User;
+  
   constructor() {
     this.getAllCategories();
     this.getAllChannels();
 
-    // if (this.action == "put" || this.action == "delete") {
-    //   if (!this.userService.getToken()) {
-    //     this.myRouter.navigate(['/login']);
-    //   }
-    // }
+    if (this.action == "put" || this.action == "delete") {
+      
+      !this.userService.getToken() ?
+        this.myRouter.navigate(['/login']) :
+        this.currentUser = this.userService.getCurrentUser();
+
+      if (this.filmId != null) {
+        this.filmService.getFilm(this.filmId).subscribe({
+          next: (returnedFilm) => {
+            this.film = returnedFilm;
+
+            if (
+              !this.currentUser.roles.includes("ROLE_ADMIN") && 
+              this.film.createdBy != this.currentUser.id
+            ) {
+              this.myRouter.navigate(['/login']);
+            }
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        })
+      }
+
+    }
   }
 
   getAllCategories() {
