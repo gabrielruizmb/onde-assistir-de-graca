@@ -1,6 +1,16 @@
 <app-header></app-header>
 <div id="home-content">
     <menu id="categories-menu">
+        <li (click) = "getAllChannels()">
+            <figure class="film-frame">
+                <img 
+                    src="https://i.ytimg.com/vi/ToDkF4J7Jbg/maxresdefault.jpg" 
+                    alt="Imagem de tela colorida fora do ar." 
+                    class="film-frame-figure"
+                >
+                <figcaption>Canais</figcaption>
+            </figure>
+        </li>
         <li (click) = "getAllFilms()">
             <figure class="film-frame">
                 <img 
@@ -61,6 +71,13 @@
                 <figcaption>Programas</figcaption>
             </figure>
         </li> -->
+
+        <!-- @for(channel of channels; track $index) {
+            <a href="{{channel.url}}" target="_blank" class="film-channel-box">
+                <img src="{{channel.imageUrl}}" alt="Logo do canal" title="{{channel.name}}">
+            </a>
+        } -->
+
         @for (category of categories; track $index) {
             <li (click) = "getAllFromCategory(category.id)">
                 <figure class="film-frame">
@@ -117,6 +134,19 @@
                     <figcaption class="film-card-title">Arnold</figcaption>
                 </figure>
             </a> -->
+
+            @if (channels.length != 0) {
+                <section class="default-card film-channels-card">
+                    <div class="film-channels-card-title-box channels-card-title">
+                        <h1>Onde assistir de graça!</h1>
+                    </div>
+                    @for(channel of channels; track $index) {
+                        <a href="{{channel.url}}" target="_blank" class="film-channel-box">
+                            <img src="{{channel.imageUrl}}" alt="Logo do canal" title="{{channel.name}}">
+                        </a>
+                    }
+                </section>
+            }
 
             @for (film of films; track $index) {
                 <figure class="film-card">

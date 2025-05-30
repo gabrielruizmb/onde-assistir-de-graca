@@ -6,6 +6,8 @@ import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { ChannelService } from '../../services/channel.service';
+import { Channel } from '../../models/channel';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,9 @@ import { User } from '../../models/user';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+  channelService = inject(ChannelService);
+  channels: Channel[] = [];
 
   categoryService = inject(CategoryService);
   categories: Category[] = [];
@@ -28,6 +33,18 @@ export class HomeComponent {
 
     this.getAllCategories();
     this.getAllFilms();
+  }
+
+  getAllChannels() {
+    this.channelService.getAll().subscribe({
+      next: (returnedChannels) => {
+        this.channels = returnedChannels;
+        this.films = [];
+      },
+      error: (response) => {
+        console.log("Erro ao obter os canais.");
+      }
+    })
   }
 
   getAllCategories() {
@@ -45,6 +62,7 @@ export class HomeComponent {
     this.filmService.getAll().subscribe({
       next: (returnedFilms) => {
         this.films = returnedFilms;
+        this.channels = [];
       },
       error: (error) => {
         console.log("Falha ao buscar os filmes.");
@@ -56,6 +74,7 @@ export class HomeComponent {
     this.filmService.getAllFromCategory(id).subscribe({
       next: (returnedFilms) => {
         this.films = returnedFilms;
+        this.channels = [];
       },
       error: (error) => {
         console.log("Erro ao obter filmes por categoria.");

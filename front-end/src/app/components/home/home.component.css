@@ -150,3 +150,7 @@ main {
 .film-card-options img {
     margin: 5px;
 }
+
+.channels-card-title {
+    font-family: 'Poppins';
+}
