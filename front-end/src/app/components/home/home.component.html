@@ -21,62 +21,6 @@
                 <figcaption>Todos</figcaption>
             </figure>
         </li>
-        <!-- <li>
-            <figure class="film-frame">
-                <img 
-                    src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
-                    alt="" 
-                    class="film-frame-figure"
-                >
-                <figcaption>Programas</figcaption>
-            </figure>
-        </li>
-        <li>
-            <figure class="film-frame">
-                <img 
-                    src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
-                    alt="" 
-                    class="film-frame-figure"
-                >
-                <figcaption>Todos</figcaption>
-            </figure>
-        </li>
-        <li>
-            <figure class="film-frame">
-                <img 
-                    src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
-                    alt="" 
-                    class="film-frame-figure"
-                >
-                <figcaption>Programas</figcaption>
-            </figure>
-        </li>
-        <li>
-            <figure class="film-frame">
-                <img 
-                    src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
-                    alt="" 
-                    class="film-frame-figure"
-                >
-                <figcaption>Todos</figcaption>
-            </figure>
-        </li>
-        <li>
-            <figure class="film-frame">
-                <img 
-                    src="https://dalenogare.com/wp-content/uploads/2014/03/The-Green-Mile.jpg" 
-                    alt="" 
-                    class="film-frame-figure"
-                >
-                <figcaption>Programas</figcaption>
-            </figure>
-        </li> -->
-
-        <!-- @for(channel of channels; track $index) {
-            <a href="{{channel.url}}" target="_blank" class="film-channel-box">
-                <img src="{{channel.imageUrl}}" alt="Logo do canal" title="{{channel.name}}">
-            </a>
-        } -->
 
         @for (category of categories; track $index) {
             <li (click) = "getAllFromCategory(category.id)">
@@ -99,44 +43,17 @@
                 <a href="/film-form/post/new" class="add-film-button">+ Adicionar filme</a>
             </div>
         }
-        <section class="films-section">                                                                                                                                                                                                         
-            <!-- <figure class="film-card">
-                <img 
-                    src="https://m.media-amazon.com/images/M/MV5BYWEwYjA1ODUtNDFhYy00MjE3LWJmMjgtOTI4MGM2OGJiOTBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Xena: A princesa guerreira</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6OykWpuU1sOKqtVa2t7Ed-t4Yfmn_hTsnFg&s" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">MacGyver</figcaption>
-            </figure>
-            <figure class="film-card">
-                <img 
-                    src="https://http2.mlstatic.com/D_NQ_NP_951292-MLB46381854543_062021-O-pster-cinema-filme-conan-o-barbaro-arnold-schwarzenegger-1.webp" 
-                    alt=""
-                    class="film-card-poster"
-                >
-                <figcaption class="film-card-title">Conan: O bárbaro!</figcaption>
-            </figure>
-            <a href="/film-details" class="default-anchor-style">
-                <figure class="film-card">
-                    <img 
-                        src="https://br.web.img3.acsta.net/c_162_216/medias/nmedia/18/36/29/27/19456283.jpg" 
-                        alt=""
-                        class="film-card-poster"
-                    >
-                    <figcaption class="film-card-title">Arnold</figcaption>
-                </figure>
-            </a> -->
+        <section class="films-section">                
 
             @if (channels.length != 0) {
-                <section class="default-card film-channels-card">
+                <section class="channels-card">
+                    @if (userService.getToken()) {
+                        <a 
+                            href="/channel-form/post/new"
+                            title="+ Adicionar canal" 
+                            class="default-anchor-style add-channel-button"
+                        >+ Adicionar canal</a>
+                    }
                     <div class="film-channels-card-title-box channels-card-title">
                         <h1>Onde assistir de graça!</h1>
                     </div>

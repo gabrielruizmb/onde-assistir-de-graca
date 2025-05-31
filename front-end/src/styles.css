@@ -164,6 +164,16 @@
     display: flex;
 }
 
+.channels-card {
+    margin: 20px;
+    padding: 10px;
+    border-radius: 30px;
+    border: 2px solid var(--secondary-dark);
+
+    color: var(--primary-orange);
+    background-color: var(--primary-dark);
+}
+
 .film-channels-card-title-box {
     display: flex;
     justify-content: center;

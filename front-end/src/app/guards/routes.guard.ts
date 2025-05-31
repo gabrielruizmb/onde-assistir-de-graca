@@ -7,7 +7,9 @@ export const routesGuard: CanActivateFn = (route, state) => {
   let userService = inject(UserService);
   let myRouter = inject(Router);
 
-  if (state.url == '/user-profile' || state.url == '/film-form/post/new') {
+  if (state.url == '/user-profile' || 
+    state.url == '/film-form/post/new' || 
+    state.url == '/channel-form/post/new') {
     
     if (!userService.getToken()) {
       myRouter.navigate(['/login']);
