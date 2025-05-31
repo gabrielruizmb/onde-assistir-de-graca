@@ -61,6 +61,29 @@ main {
     margin-top: 10px;
 }
 
+.channels-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.channel-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(--secondary-dark);
+    border-radius: 30px;
+
+    margin-bottom: 15px;
+}
+
+@media(min-width: 435px) {
+    .channel-box {
+        margin: 15px;
+    }
+}
+
 .home-welcome-card-box {
     display: flex;
     justify-content: center;

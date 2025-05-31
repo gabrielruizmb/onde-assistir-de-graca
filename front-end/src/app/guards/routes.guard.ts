@@ -16,6 +16,15 @@ export const routesGuard: CanActivateFn = (route, state) => {
       return false;
     } 
 
+    if (state.url == '/channel-form/post/new') {
+      let currentUser = userService.getCurrentUser();
+
+      if (!currentUser.roles.includes("ROLE_ADMIN")) {
+        myRouter.navigate(['/login']);
+        return false;
+      }
+    }
+
     let payload = userService.getTokenPayload();
     
     if (payload.exp) {
