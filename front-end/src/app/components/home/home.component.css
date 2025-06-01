@@ -78,6 +78,9 @@ main {
     margin-bottom: 15px;
 }
 
+/* .channel-box-card {
+} */
+
 @media(min-width: 435px) {
     .channel-box {
         margin: 15px;

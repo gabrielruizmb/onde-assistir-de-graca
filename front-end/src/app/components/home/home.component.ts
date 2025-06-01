@@ -33,13 +33,24 @@ export class HomeComponent {
 
     this.getAllCategories();
     this.getAllFilms();
-  }
 
+  }
+  
   getAllChannels() {
     this.channelService.getAll().subscribe({
       next: (returnedChannels) => {
         this.channels = returnedChannels;
         this.films = [];
+        
+        // if (this.userService.getToken()) {
+        //   if (this.currentUser.roles.includes("ROLE_ADMIN")) {
+        //     let channelBox = document.querySelector("channel-box");
+      
+        //     if (channelBox != null)
+        //       channelBox.classList.add("channel-box-card");
+        //   }
+        // }
+
       },
       error: (response) => {
         console.log("Erro ao obter os canais.");
