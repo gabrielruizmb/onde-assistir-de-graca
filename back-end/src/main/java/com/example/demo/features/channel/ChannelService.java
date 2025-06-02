@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.features.GenericResponseDTO;
+
 @Service
 public class ChannelService {
 
@@ -103,12 +105,24 @@ public class ChannelService {
         } 
     }
 
-    public ResponseEntity<ChannelDTO> deleteById(UUID id) {
+    public ResponseEntity<GenericResponseDTO> deleteById(UUID id) {
 
         if (!channelRepository.existsById(id))
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new GenericResponseDTO("Canal não encontrado")
+            );
         
-        channelRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        try {
+            channelRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(
+                new GenericResponseDTO("Canal excluído")
+            );
+        } catch(Exception exception) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(
+                new GenericResponseDTO(
+                    "Este canal está vínculado a um ou mais filmes, desvincule-os para poder excluí-lo"
+                )
+            );
+        }
     }
 }

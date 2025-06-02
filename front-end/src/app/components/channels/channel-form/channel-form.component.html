@@ -20,7 +20,7 @@
                     <img class="channel-img" src="{{channel.imageUrl}}" alt="Logo do canal">
                 </div>
                 <div class="default-input-box">
-                    <p class="message-box error-color-text">{{channelNameErrorMessage}}</p>
+                    <p class="message-box error-color-text">{{errorMessage}}</p>
                     <label for="name">Nome do canal</label>
                     @if (action == 'post' || action == 'put') {
                         <input [(ngModel)]="channel.name" name="name" type="text">

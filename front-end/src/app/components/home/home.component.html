@@ -67,6 +67,7 @@
                                 </a>
                                 @if (userService.getToken()) {
                                     @if (currentUser.roles.includes("ROLE_ADMIN")) {
+                                        <p>{{channel.name}}</p>
                                         <div class="film-card-options">
                                             <a href="/channel-form/put/{{channel.id}}">
                                                 <img src="pencil.png" alt="Ícone de um lápis.">

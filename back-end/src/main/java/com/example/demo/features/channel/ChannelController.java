@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.features.GenericResponseDTO;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/channels")
@@ -57,7 +59,7 @@ public class ChannelController {
     
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<ChannelDTO> deleteById(@PathVariable UUID id) {
+    public ResponseEntity<GenericResponseDTO> deleteById(@PathVariable UUID id) {
         return channelService.deleteById(id);
     }
 }

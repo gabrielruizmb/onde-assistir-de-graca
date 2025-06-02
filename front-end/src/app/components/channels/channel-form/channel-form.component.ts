@@ -20,7 +20,7 @@ export class ChannelFormComponent {
   channelService = inject(ChannelService);
   channel: Channel = new Channel();
 
-  channelNameErrorMessage!: string;
+  errorMessage!: string;
   successMessage!: string;
 
   constructor() {
@@ -37,11 +37,11 @@ export class ChannelFormComponent {
     this.channelService.post(this.channel).subscribe({
       next: (response) => {
         this.channel = new Channel();
-        this.channelNameErrorMessage = "";
+        this.errorMessage = "";
         this.successMessage = "Canal publicado!";
       },
       error: (response) => {
-        this.channelNameErrorMessage = response.error.name + '!';
+        this.errorMessage = response.error.name + '!';
       }
     })
   }
@@ -62,12 +62,11 @@ export class ChannelFormComponent {
   putChannel() {
     this.channelService.put(this.channel).subscribe({
       next: (response) => {
-        this.channel = new Channel();
-        this.channelNameErrorMessage = "";
+        this.errorMessage = "";
         this.successMessage = "Canal editado!";
       },
       error: (response) => {
-        this.channelNameErrorMessage = response.error.name + '!';
+        this.errorMessage = response.error.name + '!';
       }
     })
   }
@@ -77,11 +76,12 @@ export class ChannelFormComponent {
       this.channelService.deleteById(this.id).subscribe({
         next: (response) => {
           this.channel = new Channel();
-          this.channelNameErrorMessage = "";
+          this.errorMessage = "";
           this.successMessage = "Canal excluído!";
         },
         error: (response) => {
-          this.channelNameErrorMessage = response.error.name + '!';
+          console.log(response);
+          this.errorMessage = response.error.message + '!';
         }
       })
     }
