@@ -6,22 +6,28 @@
             <form class="channel-form default-card" action="" method="post">
                 <h1>+ Adicionar canal</h1>
                 <div class="channel-img-box">
-                    <img class="channel-img" src="" alt="Logo do canal">
+                    <img class="channel-img" src="{{channel.imageUrl}}" alt="Logo do canal">
                 </div>
                 <div class="default-input-box">
-                    <label for="">Nome do canal</label>
-                    <input type="text">
+                    <p class="message-box error-color-text">{{channelNameErrorMessage}}</p>
+                    <label for="name">Nome do canal</label>
+                    <input [(ngModel)]="channel.name" name="name" type="text">
                 </div>
                 <div class="default-input-box">
-                    <label for="">Link da logo do canal</label>
-                    <input type="url">
+                    <label for="logo">Link da logo do canal</label>
+                    <input [(ngModel)]="channel.imageUrl" name="logo" type="url">
                 </div>
                 <div class="default-input-box">
-                    <label for="">Link do canal</label>
-                    <input type="url">
+                    <label for="link">Link do canal</label>
+                    <input [(ngModel)]="channel.url" name="link" type="url">
                 </div>
+                <p class="message-box success-color-text">{{successMessage}}</p>
                 <div class="default-button-box">
-                    <button class="default-button" type="submit">Publicar canal</button>
+                    <button 
+                        (click)="postChannel()"
+                        class="default-button" 
+                        type="submit"
+                    >Publicar canal</button>
                 </div>
             </form>
         </section>

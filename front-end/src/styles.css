@@ -212,6 +212,10 @@
     margin-bottom: 15px;
 }
 
+.message-box {
+    text-align: center;
+}
+
 @media(max-width: 340px) {
     .logo img:first-child{
         width: 50px;
