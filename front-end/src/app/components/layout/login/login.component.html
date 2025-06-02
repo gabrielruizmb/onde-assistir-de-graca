@@ -1,23 +1,23 @@
 <div id="root">
-    <div id="sign-in-card" class="default-card">
+    <form id="sign-in-card" class="default-card">
         <a href="/home" class="logo">
             <img src="popcorn-bucket.png" alt="Ilustração de um balde de pipoca">
             <img src="logo-title.png" alt="Onde assistir de graça">
         </a>
         <h2>Entrar</h2>
-        <p>{{error}}</p>
+        <p class="error-color-text">{{error}}</p>
         <div class="default-input-box">
-            <label for="">E-mail</label>
-            <input [(ngModel)] = "login.email" type="email" class="default-input">
+            <label for="email">E-mail</label>
+            <input [(ngModel)] = "login.email" name="email" type="email" class="default-input">
         </div>
         <div class="default-input-box">
-            <label for="">Senha</label>
-            <input [(ngModel)] = "login.password" type="password" class="default-input">
+            <label for="password">Senha</label>
+            <input [(ngModel)] = "login.password" name="password" type="password" class="default-input">
         </div>
         <button (click) = "signIn()" type="submit" class="default-button">Entrar</button>
         <p>
             <span>Aviso: </span>esta área destina-se somente aos colaboradores de conteúdo do site!
         </p>
         <a href="/home" class = "default-button">Voltar ao site</a>
-    </div>
+    </form>
 </div>
