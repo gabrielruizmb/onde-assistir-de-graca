@@ -20,8 +20,23 @@ export class CategoryService {
     return this.http.get<Category[]>(this.baseUrl);
   }
 
+  getById(id: string): Observable<Category> {
+    return this.http.get<Category>(this.baseUrl + '/' + id,
+      {headers: {'Authorization': 'Bearer ' + this.userService.getToken()}});
+  }
+
   postCategory(category: Category): Observable<any> {
     return this.http.post<any>(this.baseUrl, category,
+      {headers: {'Authorization': 'Bearer ' + this.userService.getToken()}});
+  }
+
+  putCategory(category: Category): Observable<any> {
+    return this.http.put<any>(this.baseUrl + '/' + category.id, category,
+      {headers: {'Authorization': 'Bearer ' + this.userService.getToken()}});
+  }
+
+  deleteCategory(id: string): Observable<any> {
+    return this.http.delete<any>(this.baseUrl + '/' + id,
       {headers: {'Authorization': 'Bearer ' + this.userService.getToken()}});
   }
 }

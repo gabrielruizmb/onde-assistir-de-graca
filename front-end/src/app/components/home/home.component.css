@@ -53,6 +53,12 @@
     -webkit-text-stroke: 0.05rem var(--primary-white);
 }
 
+.category-card-options {
+    background-color: rgba(20, 19, 19, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+}
+
 main {
     display: flex;
     flex-direction: column;
