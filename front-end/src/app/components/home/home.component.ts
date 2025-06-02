@@ -41,15 +41,6 @@ export class HomeComponent {
       next: (returnedChannels) => {
         this.channels = returnedChannels;
         this.films = [];
-        
-        // if (this.userService.getToken()) {
-        //   if (this.currentUser.roles.includes("ROLE_ADMIN")) {
-        //     let channelBox = document.querySelector("channel-box");
-      
-        //     if (channelBox != null)
-        //       channelBox.classList.add("channel-box-card");
-        //   }
-        // }
 
       },
       error: (response) => {

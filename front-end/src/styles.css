@@ -24,6 +24,11 @@
     --primary-error-color: red;
 }
 
+.default-button-box {
+    display: flex;
+    justify-content: center;
+}
+
 .default-button {
     background-color: var(--primary-orange);
     border-radius: 30px;
