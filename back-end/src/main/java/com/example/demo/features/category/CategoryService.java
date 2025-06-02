@@ -21,16 +21,24 @@ public class CategoryService {
     public ResponseEntity<HashMap<String, String>> create(CategoryDTO 
                                                           categoryDTO) {
 
-        if (categoryDTO.name().isBlank() || categoryDTO.name().length() > 30) {
+        HashMap<String, String> response = new HashMap<>();
 
-            HashMap<String, String> response = new HashMap<>();
+        if (categoryDTO.name() == null) {
+            response.put("nome", "O nome não pode ser nulo");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                response
+            );
+        }
 
-            if (categoryDTO.name().isBlank())
-                response.put("nome", "O nome não pode ficar em branco");
+        if (categoryDTO.name().isBlank()) {
+            response.put("nome", "O nome não pode ficar em branco");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                response
+            );
+        }
 
-            if (categoryDTO.name().length() > 30)
-                response.put("nome", "O nome pode ter no máx. 30 caracteres");
-
+        if (categoryDTO.name().length() > 30) {
+            response.put("nome", "O nome pode ter no máx. 30 caracteres");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 response
             );
@@ -43,7 +51,6 @@ public class CategoryService {
         
         } catch (Exception exception) {
 
-            HashMap<String, String> response = new HashMap<>();
             response.put("nome", "Já existe uma categoria com este nome");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
@@ -52,32 +59,38 @@ public class CategoryService {
     public ResponseEntity<HashMap<String, String>> update(
         CategoryDTO categoryDTO, UUID id) {
 
+        HashMap<String, String> response = new HashMap<>();
+
         if (!categoryRepository.existsById(id)) {
-            HashMap<String, String> response = new HashMap<>();
             response.put("id", "Não existe uma categoria com este id");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
-
-        if (categoryDTO.name().isBlank() || categoryDTO.name().length() > 30) {
-
-            HashMap<String, String> response = new HashMap<>();
-
-            if (categoryDTO.name().isBlank())
-                response.put("nome", "O nome não pode ficar em branco");
-
-            if (categoryDTO.name().length() > 30)
-                response.put("nome", "O nome pode ter no máx. 30 caracteres");
-
+            
+        if (categoryDTO.name() == null) {
+            response.put("nome", "O nome não pode ser nulo");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 response
             );
         }
 
+        if (categoryDTO.name().isBlank()) {
+            response.put("nome", "O nome não pode ficar em branco");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                response
+            );
+        }
+
+        if (categoryDTO.name().length() > 30) {
+            response.put("nome", "O nome pode ter no máx. 30 caracteres");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                response
+            );
+        }   
+
         try {
             categoryRepository.save(categoryDTO.convertToEntity());
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         } catch (Exception exception) {
-            HashMap<String, String> response = new HashMap<>();
             response.put("nome", "Já existe uma categoria com este nome");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }

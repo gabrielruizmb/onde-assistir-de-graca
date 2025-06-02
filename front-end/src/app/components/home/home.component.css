@@ -40,6 +40,10 @@
 
 #categories-menu figcaption{
     position: absolute;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     font-family: 'Mali';
     font-size: 1.5rem;

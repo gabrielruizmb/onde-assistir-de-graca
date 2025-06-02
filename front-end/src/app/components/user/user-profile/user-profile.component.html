@@ -7,19 +7,30 @@
                 <img src="big-person-icon.png" alt="Ícone de uma pessoa/usuário" class="user-profile-info-icon">
                 <h3>Meus dados</h3>
                 <div class="user-data">
-                    <span>Nome: </span>
-                    <p>{{currentUser.name}}</p>
+                    <div class="user-data-item">
+                        <span>Nome: </span>
+                        <p>{{currentUser.name}}</p>
+                    </div>
     
-                    <span>E-mail: </span>
-                    <p>{{currentUser.email}}</p>
+                    <div class="user-data-item">
+                        <span>E-mail: </span>
+                        <p>{{currentUser.email}}</p>
+                    </div>
     
-                    <span>Cargo: </span>
-                    @if(userService.hasRole('ROLE_ADMIN')) {
-                        <p>Administrador(a)</p>
-                    }
-                    @if(userService.hasRole('ROLE_COLLABORATOR')) {
-                        <p>Colaborador(a)</p>
-                    }
+                    <div class="user-data-item">
+                        @if(userService.hasRole('ROLE_ADMIN')) {
+                            <span>Cargo: </span>
+                            <p>Administrador(a)</p>
+                        }
+                    </div>
+
+                    <div class="user-data-item">
+                        @if(userService.hasRole('ROLE_COLLABORATOR')) {
+                            <span>Cargo: </span>
+                            <p>Colaborador(a)</p>
+                        }
+                    </div>
+                    <!-- <a href="" class="change-password-link">Alterar minha senha</a> -->
                 </div>
             </article>
             @if(userService.hasRole('ROLE_ADMIN')) {

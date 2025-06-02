@@ -1,0 +1,73 @@
+<app-header></app-header>
+<div id="page-content">
+    <main>
+        <a href="/home" class="default-button return-button">Voltar</a>
+        <section class="channel-form-section">
+            <form class="channel-form default-card" action="" method="post">
+                @if (action == 'post') {
+                    <h1 class="message-box">+ Adicionar categoria</h1>
+                }
+
+                @if (action == 'put') {
+                    <h1 class="message-box">Editar categoria</h1>
+                }
+
+                @if (action == 'delete') {
+                    <h1 class="message-box">Excluír categoria</h1>
+                }
+
+                <div class="channel-img-box">
+                    <img class="category-img" src="{{category.imageUrl}}" alt="Imagem da categoria">
+                </div>
+                <div class="default-input-box">
+                    <p class="message-box error-color-text">{{errorMessage}}</p>
+                    <label for="name">Nome da categoria</label>
+                    @if (action == 'post' || action == 'put') {
+                        <input [(ngModel)]="category.name" name="name" type="text">
+                    }
+                    @if (action == 'delete') {
+                        <input [(ngModel)]="category.name" name="name" type="text" readonly>
+                    }
+                </div>
+                <div class="default-input-box">
+                    <label for="logo">Link da imagem da categoria</label>
+                    @if (action == 'post' || action == 'put') {
+                        <input [(ngModel)]="category.imageUrl" name="logo" type="url">
+                    }
+                    @if (action == 'delete') {
+                        <input [(ngModel)]="category.imageUrl" name="logo" type="url" readonly>
+                    }
+                </div>
+
+                <p class="message-box success-color-text">{{successMessage}}</p>
+
+                <div class="default-button-box">
+
+                    @if (action == 'post') {
+                        <button 
+                            (click)="postCategory()"
+                            class="default-button" 
+                            type="submit"
+                        >Publicar categoria</button>
+                    }
+
+                    @if (action == 'put') {
+                        <button 
+                            (click)="putCategory()"
+                            class="default-button" 
+                            type="submit"
+                        >Editar categoria</button>
+                    }
+
+                    @if (action == 'delete') {
+                        <button 
+                            (click)="deleteCategory()"
+                            class="default-button danger-button" 
+                            type="submit"
+                        >Excluír categoria</button>
+                    }
+                </div>
+            </form>
+        </section>
+    </main>
+</div>

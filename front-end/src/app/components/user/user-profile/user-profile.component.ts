@@ -25,7 +25,7 @@ export class UserProfileComponent {
   users: User[] = [];
 
   constructor() {
-    this.getAllUsers();
+    // this.getAllUsers();
   }
 
   signUp() {

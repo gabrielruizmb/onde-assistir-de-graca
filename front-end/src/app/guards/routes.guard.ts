@@ -9,7 +9,8 @@ export const routesGuard: CanActivateFn = (route, state) => {
 
   if (state.url == '/user-profile' || 
     state.url == '/film-form/post/new' || 
-    state.url == '/channel-form/post/new') {
+    state.url == '/channel-form/post/new' ||
+    state.url == '/category-form/post/new') {
     
     if (!userService.getToken()) {
       myRouter.navigate(['/login']);
