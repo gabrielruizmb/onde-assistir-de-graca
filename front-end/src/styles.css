@@ -114,6 +114,33 @@
     height: 25px;
 }
 
+.add-category-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 20px;
+    margin-left: 20px;
+
+    width: 100px;
+    height: 35px;
+
+    background-color: var(--secondary-orange);
+    border-radius: 30px;
+
+    border: 2px solid var(--secondary-dark);
+    padding: 10px;
+
+    text-decoration-line: none;
+    text-align: center;
+    color: var(--secondary-dark);
+
+    cursor: pointer;
+
+    font-weight: bold;
+    font-family: 'Poppins';
+}
+
 .add-film-button {
     display: flex;
     justify-content: center;

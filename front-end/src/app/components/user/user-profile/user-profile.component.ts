@@ -14,11 +14,19 @@ import { UserRegister } from '../../../models/user-register';
 export class UserProfileComponent {
 
   userService = inject(UserService);
+
   currentUser: User = this.userService.getCurrentUser();
   newUser: UserRegister = new UserRegister();
+
   comparisonPassword!: string;
   errorMessage!: string;
   sucessMessage!: string;
+
+  users: User[] = [];
+
+  constructor() {
+    // this.getAllUsers();
+  }
 
   signUp() {
 
@@ -31,6 +39,18 @@ export class UserProfileComponent {
       },
       error: (response) => {
         this.errorMessage = response.error.message;
+      }
+    })
+  }
+
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe({
+      next: (returnedUsers) => {
+        this.users = returnedUsers;
+        console.log(this.users);
+      },
+      error: (response) => {
+        console.log(response);
       }
     })
   }

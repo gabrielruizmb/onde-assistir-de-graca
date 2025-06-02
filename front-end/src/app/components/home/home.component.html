@@ -1,6 +1,13 @@
 <app-header></app-header>
 <div id="home-content">
     <menu id="categories-menu">
+        <li>
+            @if (userService.getToken()) {
+                @if(currentUser.roles.includes("ROLE_ADMIN")) {
+                    <a href="/category-form/post/new" class="add-category-button">+ Adicionar categoria</a>
+                }
+            }
+        </li>
         <li (click) = "getAllChannels()">
             <figure class="film-frame">
                 <img 
@@ -26,7 +33,21 @@
             <li (click) = "getAllFromCategory(category.id)">
                 <figure class="film-frame">
                     <img src="{{category.imageUrl}}" alt="Poster da categoria" class="film-frame-figure">
-                    <figcaption>{{category.name}}</figcaption>
+                    <figcaption>
+                        {{category.name}}
+                        @if (userService.getToken()) {
+                            @if(currentUser.roles.includes("ROLE_ADMIN")) {
+                                <div class="film-card-options category-card-options">
+                                    <a href="/category-form/put/{{category.id}}">
+                                        <img src="pencil.png" alt="Ícone de um lápis.">
+                                    </a>
+                                    <a href="/category-form/delete/{{category.id}}">
+                                        <img src="trash.png" alt="Ícone de uma lixeira.">
+                                    </a>
+                                </div>  
+                            }
+                        }
+                    </figcaption>
                 </figure>
             </li>
         }
@@ -67,6 +88,7 @@
                                 </a>
                                 @if (userService.getToken()) {
                                     @if (currentUser.roles.includes("ROLE_ADMIN")) {
+                                        <p>{{channel.name}}</p>
                                         <div class="film-card-options">
                                             <a href="/channel-form/put/{{channel.id}}">
                                                 <img src="pencil.png" alt="Ícone de um lápis.">

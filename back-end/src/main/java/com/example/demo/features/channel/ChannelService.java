@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.features.GenericResponseDTO;
+
 @Service
 public class ChannelService {
 
@@ -59,24 +61,33 @@ public class ChannelService {
         if (!channelRepository.existsById(id))
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 
-        if (channelDTO.name().isBlank() || channelDTO.name().length() > 30) {
-            HashMap<String, String> response = new HashMap<>();
+        HashMap<String, String> response = new HashMap<>();
 
-            if (channelDTO.name().isBlank())
-                response.put("name", "O nome não pode ficar em branco");
+        if (channelDTO.name() == null) {
+            response.put("name", "O nome não pode ser nulo");
+            
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(response);
+        }
 
-            if (channelDTO.name().length() > 30)
-                response.put("name", "O não pode ter no máx. 30 caracteres");
+        if (channelDTO.name().isBlank()) {
+            response.put("name", "O nome não pode ficar em branco");
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                  .body(response);
+            .body(response);
+        }
+
+        if (channelDTO.name().length() > 30) {
+            response.put("name", "O nome pode ter no máx. 30 caracteres");
+    
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(response);
         }
 
         try {
             channelRepository.save(channelDTO.convertToEntity());
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         } catch (Exception exception) {
-            HashMap<String, String> response = new HashMap<>();
             response.put("name", "Este nome de canal já está sendo usado");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
@@ -103,12 +114,24 @@ public class ChannelService {
         } 
     }
 
-    public ResponseEntity<ChannelDTO> deleteById(UUID id) {
+    public ResponseEntity<GenericResponseDTO> deleteById(UUID id) {
 
         if (!channelRepository.existsById(id))
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new GenericResponseDTO("Canal não encontrado")
+            );
         
-        channelRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        try {
+            channelRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(
+                new GenericResponseDTO("Canal excluído")
+            );
+        } catch(Exception exception) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(
+                new GenericResponseDTO(
+                    "Este canal está vínculado a um ou mais filmes, desvincule-os para poder excluí-lo"
+                )
+            );
+        }
     }
 }

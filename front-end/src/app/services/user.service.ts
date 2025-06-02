@@ -27,6 +27,11 @@ export class UserService {
       {headers: {'Authorization': 'Bearer ' + this.getToken()}});
   }
 
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.url, 
+      {headers: {'Authorization': 'Bearer ' + this.getToken()}});
+  }
+
   setToken(token: string) {
     localStorage.setItem("token", token);
   }
