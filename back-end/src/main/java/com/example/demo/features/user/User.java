@@ -62,6 +62,9 @@ public class User implements UserDetails{
 	}
 
 	public UserResponseDTO convertToUserResponseDTO() {
-		return new UserResponseDTO(id, email, fullName, role);
+		List<String> roles = new ArrayList<>();
+		roles.add(role);
+
+		return new UserResponseDTO(id, email, fullName, roles);
 	}
 }
