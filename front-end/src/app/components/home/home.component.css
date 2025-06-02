@@ -55,8 +55,12 @@
 
 .category-card-options {
     background-color: rgba(20, 19, 19, 0.5);
-    padding: 5px;
-    border-radius: 5px;
+    padding: 2.5px;
+    border-radius: 15px;
+}
+
+.category-card-options-img {
+    width: 24px;
 }
 
 main {

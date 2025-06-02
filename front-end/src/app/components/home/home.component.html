@@ -39,10 +39,18 @@
                             @if(currentUser.roles.includes("ROLE_ADMIN")) {
                                 <div class="film-card-options category-card-options">
                                     <a href="/category-form/put/{{category.id}}">
-                                        <img src="pencil.png" alt="Ícone de um lápis.">
+                                        <img
+                                            class="category-card-options-img" 
+                                            src="pencil.png" 
+                                            alt="Ícone de um lápis."
+                                        >
                                     </a>
                                     <a href="/category-form/delete/{{category.id}}">
-                                        <img src="trash.png" alt="Ícone de uma lixeira.">
+                                        <img 
+                                            class="category-card-options-img"    
+                                            src="trash.png" 
+                                            alt="Ícone de uma lixeira."
+                                        >
                                     </a>
                                 </div>  
                             }
