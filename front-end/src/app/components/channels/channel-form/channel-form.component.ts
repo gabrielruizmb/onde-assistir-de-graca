@@ -3,6 +3,7 @@ import { HeaderComponent } from '../../layout/header/header.component';
 import { ChannelService } from '../../../services/channel.service';
 import { Channel } from '../../../models/channel';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-channel-form',
@@ -12,6 +13,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class ChannelFormComponent {
 
+  currentRoute = inject(ActivatedRoute);
+  action = this.currentRoute.snapshot.paramMap.get('action');
+  id = this.currentRoute.snapshot.paramMap.get('id');
+
   channelService = inject(ChannelService);
   channel: Channel = new Channel();
 
@@ -19,12 +24,16 @@ export class ChannelFormComponent {
   successMessage!: string;
 
   constructor() {
-
+    if (this.action != null) {
+      if (this.action == 'put' || this.action == 'delete') {
+        if (this.id != null) {
+          this.getChannel();
+        }
+      }
+    }
   }
 
   postChannel() {
-    console.log(this.channel);
-
     this.channelService.post(this.channel).subscribe({
       next: (response) => {
         this.channel = new Channel();
@@ -36,4 +45,46 @@ export class ChannelFormComponent {
       }
     })
   }
+
+  getChannel() {
+    if (this.id != null) {
+      this.channelService.getById(this.id).subscribe({
+        next: (returnedChannel) => {
+          this.channel = returnedChannel;
+        },
+        error: (response) => {
+          console.log("Erro ao obter o canal!");
+        }
+      })
+    }
+  }
+
+  putChannel() {
+    this.channelService.put(this.channel).subscribe({
+      next: (response) => {
+        this.channel = new Channel();
+        this.channelNameErrorMessage = "";
+        this.successMessage = "Canal editado!";
+      },
+      error: (response) => {
+        this.channelNameErrorMessage = response.error.name + '!';
+      }
+    })
+  }
+
+  deleteChannel() {
+    if (this.id != null) {
+      this.channelService.deleteById(this.id).subscribe({
+        next: (response) => {
+          this.channel = new Channel();
+          this.channelNameErrorMessage = "";
+          this.successMessage = "Canal excluído!";
+        },
+        error: (response) => {
+          this.channelNameErrorMessage = response.error.name + '!';
+        }
+      })
+    }
+  }
+  
 }

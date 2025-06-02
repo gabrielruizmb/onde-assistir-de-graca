@@ -68,10 +68,10 @@
                                 @if (userService.getToken()) {
                                     @if (currentUser.roles.includes("ROLE_ADMIN")) {
                                         <div class="film-card-options">
-                                            <a href="">
+                                            <a href="/channel-form/put/{{channel.id}}">
                                                 <img src="pencil.png" alt="Ícone de um lápis.">
                                             </a>
-                                            <a href="">
+                                            <a href="/channel-form/delete/{{channel.id}}">
                                                 <img src="trash.png" alt="Ícone de uma lixeira.">
                                             </a>
                                         </div>   
