@@ -1,0 +1,82 @@
+<app-header></app-header>
+<div id="page-content">
+    <main>
+        <a href="/home" class="default-button return-button">Voltar</a>
+        <section class="channel-form-section">
+            <form class="channel-form default-card" action="" method="post">
+                @if (action == 'post') {
+                    <h1 class="message-box">+ Adicionar canal</h1>
+                }
+
+                @if (action == 'put') {
+                    <h1 class="message-box">Editar canal</h1>
+                }
+
+                @if (action == 'delete') {
+                    <h1 class="message-box">Excluír canal</h1>
+                }
+
+                <div class="channel-img-box">
+                    <img class="channel-img" src="{{channel.imageUrl}}" alt="Logo do canal">
+                </div>
+                <div class="default-input-box">
+                    <p class="message-box error-color-text">{{channelNameErrorMessage}}</p>
+                    <label for="name">Nome do canal</label>
+                    @if (action == 'post' || action == 'put') {
+                        <input [(ngModel)]="channel.name" name="name" type="text">
+                    }
+                    @if (action == 'delete') {
+                        <input [(ngModel)]="channel.name" name="name" type="text" readonly>
+                    }
+                </div>
+                <div class="default-input-box">
+                    <label for="logo">Link da logo do canal</label>
+                    @if (action == 'post' || action == 'put') {
+                        <input [(ngModel)]="channel.imageUrl" name="logo" type="url">
+                    }
+                    @if (action == 'delete') {
+                        <input [(ngModel)]="channel.imageUrl" name="logo" type="url" readonly>
+                    }
+                </div>
+                <div class="default-input-box">
+                    <label for="link">Link do canal</label>
+                    @if (action == 'post' || action == 'put') {
+                        <input [(ngModel)]="channel.url" name="link" type="url">
+                    }
+                    @if (action == 'delete') {
+                        <input [(ngModel)]="channel.url" name="link" type="url" readonly>
+                    }
+                </div>
+
+                <p class="message-box success-color-text">{{successMessage}}</p>
+
+                <div class="default-button-box">
+
+                    @if (action == 'post') {
+                        <button 
+                            (click)="postChannel()"
+                            class="default-button" 
+                            type="submit"
+                        >Publicar canal</button>
+                    }
+
+                    @if (action == 'put') {
+                        <button 
+                            (click)="putChannel()"
+                            class="default-button" 
+                            type="submit"
+                        >Editar canal</button>
+                    }
+
+                    @if (action == 'delete') {
+                        <button 
+                            (click)="deleteChannel()"
+                            class="default-button danger-button" 
+                            type="submit"
+                        >Excluír canal</button>
+                    }
+                </div>
+            </form>
+        </section>
+    </main>
+</div>
