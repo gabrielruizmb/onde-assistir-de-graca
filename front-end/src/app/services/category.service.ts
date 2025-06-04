@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../models/category';
 import { UserService } from './user.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { UserService } from './user.service';
 export class CategoryService {
 
   http = inject(HttpClient);
-  baseUrl = 'http://localhost:8080/api/categories';
+  baseUrl = environment.SERVER + '/api/categories';
 
   userService = inject(UserService);
 
