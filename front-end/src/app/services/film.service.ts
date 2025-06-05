@@ -4,6 +4,7 @@ import { Film } from '../models/film';
 import { Observable } from 'rxjs';
 import { GenericResponse } from '../models/generic-response';
 import { UserService } from './user.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { UserService } from './user.service';
 export class FilmService {
 
   http = inject(HttpClient);
-  baseUrl = "http://localhost:8080/api/films";
+  baseUrl = environment.SERVER + "/api/films";
 
   userService = inject(UserService);
 

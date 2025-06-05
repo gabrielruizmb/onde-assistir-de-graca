@@ -6,6 +6,7 @@ import { Login } from '../models/login';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { User } from '../models/user';
 import { UserRegister } from '../models/user-register';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { UserRegister } from '../models/user-register';
 export class UserService {
 
   http = inject(HttpClient);
-  url = "http://localhost:8080/api/users";
+  url = environment.SERVER + "/api/users";
 
   constructor() { }
 

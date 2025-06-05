@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Channel } from '../models/channel';
 import { UserService } from './user.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { UserService } from './user.service';
 export class ChannelService {
 
   http = inject(HttpClient);
-  baseUrl = "http://localhost:8080/api/channels";
+  baseUrl = environment.SERVER + "/api/channels";
 
   userService = inject(UserService);
 
