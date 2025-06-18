@@ -50,9 +50,13 @@ public class FilmController {
         return filmService.getAll(pageNumber, quantityPerPage);
     }
 
-    @GetMapping("by-category/{id}")
-    public ResponseEntity<List<FilmDTO>> getByCategory(@PathVariable UUID id) {
-        return filmService.getByCategory(id);
+    @GetMapping("by-category/{id}/{pageNumber}/{quantityPerPage}")
+    public ResponseEntity<Page<Film>> getByCategory(
+        @PathVariable UUID id,
+        @PathVariable int pageNumber, 
+        @PathVariable int quantityPerPage
+    ) {
+        return filmService.getByCategory(id, pageNumber, quantityPerPage);
     }
 
     @GetMapping("{id}")

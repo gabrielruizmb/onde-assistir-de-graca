@@ -86,17 +86,16 @@ public class FilmService {
         );
     }
 
-    public ResponseEntity<List<FilmDTO>> getByCategory(UUID id) {
+    public ResponseEntity<Page<Film>> getByCategory(
+        UUID id, int pageNumber, int quantityPerPage
+    ) {
         Category category = categoryRepository.findById(id).get();
-        
-        List<FilmDTO> filmDTOs = new ArrayList<>();
-        List<Film> films = filmRepository.findByCategory(category);
+               
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, quantityPerPage);
 
-        for (Film film : films) {
-            filmDTOs.add(film.convertToDTO());
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(filmDTOs);
+        return ResponseEntity.status(HttpStatus.OK).body(
+            filmRepository.findByCategory(category, pageRequest)
+        );
     }
 
     public ResponseEntity<FilmDTO> getById(UUID id) {

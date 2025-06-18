@@ -55,8 +55,9 @@ public class SecurityConfig {
                             .permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/films/{id}")
                             .permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/films/by-category/{id}")
-                                .permitAll()
+                        .requestMatchers(HttpMethod.GET, 
+                            "/api/films/by-category/{id}/{pageNumber}/{quantityPerPage}")
+                            .permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
