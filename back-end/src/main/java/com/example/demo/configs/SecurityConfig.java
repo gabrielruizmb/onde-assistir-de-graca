@@ -50,7 +50,8 @@ public class SecurityConfig {
                             .permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/channels")
                             .permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/films")
+                        .requestMatchers(HttpMethod.GET, 
+                            "/api/films/{pageNumber}/{quantityPerPage}")
                             .permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/films/{id}")
                             .permitAll()

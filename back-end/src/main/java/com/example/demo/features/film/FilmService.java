@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -66,15 +69,21 @@ public class FilmService {
         return create(filmDTO);
     }
 
-    public ResponseEntity<List<FilmDTO>> getAll() {
-        List<FilmDTO> filmDTOs = new ArrayList<>();
-        List<Film> films = filmRepository.findAll();
+    public ResponseEntity<Page<Film>> getAll(
+        int pageNumber, int quantityPerPage
+    ) {
+        // List<FilmDTO> filmDTOs = new ArrayList<>();
+        // List<Film> films = filmRepository.findAll();
 
-        for (Film film : films) {
-            filmDTOs.add(film.convertToDTO());
-        }
+        // for (Film film : films) {
+        //     filmDTOs.add(film.convertToDTO());
+        // }
 
-        return ResponseEntity.status(HttpStatus.OK).body(filmDTOs);
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, quantityPerPage);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+            filmRepository.findAll(pageRequest)
+        );
     }
 
     public ResponseEntity<List<FilmDTO>> getByCategory(UUID id) {

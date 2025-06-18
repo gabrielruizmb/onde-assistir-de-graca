@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,9 +43,11 @@ public class FilmController {
         return filmService.update(id, filmDTO);
     }
 
-    @GetMapping
-    public ResponseEntity<List<FilmDTO>> getAll() {
-        return filmService.getAll();
+    @GetMapping("{pageNumber}/{quantityPerPage}")
+    public ResponseEntity<Page<Film>> getAll(
+        @PathVariable int pageNumber, @PathVariable int quantityPerPage
+    ) {
+        return filmService.getAll(pageNumber, quantityPerPage);
     }
 
     @GetMapping("by-category/{id}")
