@@ -1,10 +1,10 @@
 package com.example.demo.features.film;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -66,28 +66,33 @@ public class FilmService {
         return create(filmDTO);
     }
 
-    public ResponseEntity<List<FilmDTO>> getAll() {
-        List<FilmDTO> filmDTOs = new ArrayList<>();
-        List<Film> films = filmRepository.findAll();
+    public ResponseEntity<Page<Film>> getAll(
+        int pageNumber, int quantityPerPage
+    ) {
+        // List<FilmDTO> filmDTOs = new ArrayList<>();
+        // List<Film> films = filmRepository.findAll();
 
-        for (Film film : films) {
-            filmDTOs.add(film.convertToDTO());
-        }
+        // for (Film film : films) {
+        //     filmDTOs.add(film.convertToDTO());
+        // }
 
-        return ResponseEntity.status(HttpStatus.OK).body(filmDTOs);
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, quantityPerPage);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+            filmRepository.findAll(pageRequest)
+        );
     }
 
-    public ResponseEntity<List<FilmDTO>> getByCategory(UUID id) {
+    public ResponseEntity<Page<Film>> getByCategory(
+        UUID id, int pageNumber, int quantityPerPage
+    ) {
         Category category = categoryRepository.findById(id).get();
-        
-        List<FilmDTO> filmDTOs = new ArrayList<>();
-        List<Film> films = filmRepository.findByCategory(category);
+               
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, quantityPerPage);
 
-        for (Film film : films) {
-            filmDTOs.add(film.convertToDTO());
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(filmDTOs);
+        return ResponseEntity.status(HttpStatus.OK).body(
+            filmRepository.findByCategory(category, pageRequest)
+        );
     }
 
     public ResponseEntity<FilmDTO> getById(UUID id) {

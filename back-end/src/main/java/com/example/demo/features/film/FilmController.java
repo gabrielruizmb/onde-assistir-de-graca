@@ -1,9 +1,9 @@
 package com.example.demo.features.film;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,14 +42,20 @@ public class FilmController {
         return filmService.update(id, filmDTO);
     }
 
-    @GetMapping
-    public ResponseEntity<List<FilmDTO>> getAll() {
-        return filmService.getAll();
+    @GetMapping("{pageNumber}/{quantityPerPage}")
+    public ResponseEntity<Page<Film>> getAll(
+        @PathVariable int pageNumber, @PathVariable int quantityPerPage
+    ) {
+        return filmService.getAll(pageNumber, quantityPerPage);
     }
 
-    @GetMapping("by-category/{id}")
-    public ResponseEntity<List<FilmDTO>> getByCategory(@PathVariable UUID id) {
-        return filmService.getByCategory(id);
+    @GetMapping("by-category/{id}/{pageNumber}/{quantityPerPage}")
+    public ResponseEntity<Page<Film>> getByCategory(
+        @PathVariable UUID id,
+        @PathVariable int pageNumber, 
+        @PathVariable int quantityPerPage
+    ) {
+        return filmService.getByCategory(id, pageNumber, quantityPerPage);
     }
 
     @GetMapping("{id}")
