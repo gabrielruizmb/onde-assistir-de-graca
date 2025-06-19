@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { GenericResponse } from '../models/generic-response';
 import { UserService } from './user.service';
 import { environment } from '../../environments/environment';
+import { Page } from '../models/page';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +19,20 @@ export class FilmService {
 
   constructor() { }
 
-  getAll(): Observable<Film[]> {
-    return this.http.get<Film[]>(this.baseUrl);
+  // getAll(): Observable<Film[]> {
+  //   return this.http.get<Film[]>(this.baseUrl);
+  // }
+
+  getAll(pageNumber: number, quantityPerPage: number): Observable<Page> {
+    return this.http.get<Page>(this.baseUrl + '/' + pageNumber + '/' + quantityPerPage);
   }
 
-  getAllFromCategory(id: string): Observable<Film[]> {
-    return this.http.get<Film[]>(this.baseUrl + '/by-category/' + id);
+  // getAllFromCategory(id: string): Observable<Film[]> {
+  //   return this.http.get<Film[]>(this.baseUrl + '/by-category/' + id);
+  // }
+
+  getAllFromCategory(id: string, pageNumber: number, quantityPerPage: number): Observable<Page> {
+    return this.http.get<Page>(this.baseUrl + '/by-category/' + id  + '/' + pageNumber + '/' + quantityPerPage);
   }
 
   getFilm(id: string): Observable<Film> {

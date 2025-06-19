@@ -68,7 +68,7 @@
             </div>
         </section> -->
         @if(userService.getToken()) {
-            <div>
+            <div class="center-aligned-button-box">
                 <a href="/film-form/post/new" class="add-film-button">+ Adicionar filme</a>
             </div>
         }
@@ -138,5 +138,8 @@
                 </figure>
             }
         </section>
+        <div (click) = "seeMore()" class="center-aligned-button-box">
+            <a class="see-more-button">+ Ver mais</a>
+        </div>
     </main> 
 </div>
