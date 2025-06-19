@@ -29,7 +29,7 @@ export class HomeComponent {
 
   page: Page = new Page();
   pageNumber: number = 1;
-  quantityPerPage: number = 2;
+  quantityPerPage: number = 10;
 
   currentCategoryId: string = '';
 
@@ -115,7 +115,7 @@ export class HomeComponent {
   }
 
   seeMore() {
-    this.quantityPerPage += 2;
+    this.quantityPerPage += 10;
 
     this.currentCategoryId === '' ? 
       this.getAllFilms() : 
