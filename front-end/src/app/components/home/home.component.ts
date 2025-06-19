@@ -8,6 +8,7 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { ChannelService } from '../../services/channel.service';
 import { Channel } from '../../models/channel';
+import { Page } from '../../models/page';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,12 @@ export class HomeComponent {
 
   filmService = inject(FilmService);
   films: Film[] = [];
+
+  page: Page = new Page();
+  pageNumber: number = 1;
+  quantityPerPage: number = 10;
+
+  currentCategoryId: string = '';
 
   userService = inject(UserService);
   currentUser: User = this.userService.getCurrentUser();
@@ -60,10 +67,26 @@ export class HomeComponent {
     })
   }
 
+  // getAllFilms() {
+  //   this.filmService.getAll().subscribe({
+  //     next: (returnedFilms) => {
+  //       this.films = returnedFilms;
+  //       this.channels = [];
+  //     },
+  //     error: (error) => {
+  //       console.log("Falha ao buscar os filmes.");
+  //     }
+  //   })
+  // }
+
   getAllFilms() {
-    this.filmService.getAll().subscribe({
-      next: (returnedFilms) => {
-        this.films = returnedFilms;
+    this.currentCategoryId = '';
+
+    this.filmService.getAll(this.pageNumber, this.quantityPerPage).subscribe({
+      next: (returnedPage) => {
+        this.films = returnedPage.content;
+        this.page = returnedPage;
+        console.log(this.page);
         this.channels = [];
       },
       error: (error) => {
@@ -73,15 +96,30 @@ export class HomeComponent {
   }
 
   getAllFromCategory(id: string) {
-    this.filmService.getAllFromCategory(id).subscribe({
-      next: (returnedFilms) => {
-        this.films = returnedFilms;
+    this.currentCategoryId = id;
+
+    this.filmService.getAllFromCategory(
+      id, this.pageNumber, this.quantityPerPage
+    ).subscribe({
+      next: (returnedPage) => {
+        this.films = returnedPage.content;
+        this.page = returnedPage;
+        console.log(this.page);
+        console.log(this.currentCategoryId);
         this.channels = [];
       },
       error: (error) => {
         console.log("Erro ao obter filmes por categoria.");
       }
     })
+  }
+
+  seeMore() {
+    this.quantityPerPage += 10;
+
+    this.currentCategoryId === '' ? 
+      this.getAllFilms() : 
+      this.getAllFromCategory(this.currentCategoryId)
   }
 
 }
